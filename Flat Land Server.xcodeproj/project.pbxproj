@@ -41,6 +41,7 @@
 		F2EECB4320DB37A9007942BF /* BulletEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2EECB2A20DB37A9007942BF /* BulletEntity.swift */; };
 		F2EECB4420DB37A9007942BF /* ShapeTankEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2EECB2B20DB37A9007942BF /* ShapeTankEntity.swift */; };
 		F2EECB4520DB37A9007942BF /* ShapeEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2EECB2C20DB37A9007942BF /* ShapeEntity.swift */; };
+		F2EECB4720DB3B36007942BF /* ArenaScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2EECB4620DB3B36007942BF /* ArenaScene.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -102,6 +103,7 @@
 		F2EECB2A20DB37A9007942BF /* BulletEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BulletEntity.swift; sourceTree = "<group>"; };
 		F2EECB2B20DB37A9007942BF /* ShapeTankEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShapeTankEntity.swift; sourceTree = "<group>"; };
 		F2EECB2C20DB37A9007942BF /* ShapeEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShapeEntity.swift; sourceTree = "<group>"; };
+		F2EECB4620DB3B36007942BF /* ArenaScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArenaScene.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -195,6 +197,7 @@
 				F2EECB2620DB37A9007942BF /* Util.swift */,
 				F2EECB2720DB37A9007942BF /* ArenaModel.swift */,
 				F2EECB2820DB37A9007942BF /* entities */,
+				F2EECB4620DB3B36007942BF /* ArenaScene.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -393,6 +396,7 @@
 				F2EECB3220DB37A9007942BF /* ComponentManager.swift in Sources */,
 				F2EECB3620DB37A9007942BF /* TouchManager.swift in Sources */,
 				F2EECB4020DB37A9007942BF /* Util.swift in Sources */,
+				F2EECB4720DB3B36007942BF /* ArenaScene.swift in Sources */,
 				F2EECB3120DB37A9007942BF /* PhysicsManager.swift in Sources */,
 				F2EECB2D20DB37A9007942BF /* Entities.swift in Sources */,
 				F2EECB4220DB37A9007942BF /* BuildingEntity.swift in Sources */,

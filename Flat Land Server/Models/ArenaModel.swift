@@ -10,10 +10,10 @@ import Foundation
 import SpriteKit
 import GameplayKit
 
-class ArenaModel: NSObject, SKSceneDelegate, ArenaDelegate, EntitManagerDelegate, TouchManagerDelegate, TurretManagerDelegate, PhysicsManagerDelegate{
+class ArenaModel: NSObject, SKSceneDelegate, ArenaDelegate, EntitManagerDelegate, TouchManagerDelegate, TurretManagerDelegate, PhysicsManagerDelegate, ArenaSceneTouchDelegate{
     
     var delegate:ArenaDelegate?
-    let scene:SKScene!
+    let scene:ArenaScene!
     var lastTime:TimeInterval?
     //class managers
     var componentManager:ComponentManager!
@@ -29,7 +29,7 @@ class ArenaModel: NSObject, SKSceneDelegate, ArenaDelegate, EntitManagerDelegate
     //class objects end
     var debugNode:SKNode?
     init(size:CGSize) {
-        self.scene = SKScene(size: size)
+        self.scene = ArenaScene(size: size)
         entities = SetPointer<GKEntity>()
         super.init()
         componentManager = ComponentManager(entities: entities)
@@ -39,6 +39,7 @@ class ArenaModel: NSObject, SKSceneDelegate, ArenaDelegate, EntitManagerDelegate
         physicsManager = PhysicsManager(physicsWorld: scene.physicsWorld, delegate:self)
         mapManager = MapManager()
         agentManager = AgentManager()
+        scene.clickDelegate = self
         
         self.initiateSceneComp()
         scene.delegate = self
@@ -94,6 +95,9 @@ class ArenaModel: NSObject, SKSceneDelegate, ArenaDelegate, EntitManagerDelegate
             return false
         }
         return ent as? T
+    }
+    func clicked(point:CGPoint) -> Void {
+        touchManager.touched(point: point)
     }
     func announceInOverlay(_ text: String) {
         //print("to announce\(text)")

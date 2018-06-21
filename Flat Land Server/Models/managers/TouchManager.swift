@@ -11,17 +11,17 @@ import GameplayKit
 
 class TouchManager:NSObject{
     var toPerformAction:ArenaAction?
-    /*func touched(touch:UITouch){
-        let node = scene.atPoint(touch.location(in: scene))
+    func touched(point:CGPoint){
+        let node = scene.atPoint(point)
         if let pressedButton = entities.set.first(where: {entity in
             guard let buttonNode = (entity as? ButtonEntity)?.node else { return false}
             return (node.inParentHierarchy(buttonNode) || node == buttonNode)
         }){
-            select(action: (pressedButton as! ButtonEntity).action , touch.location(in: scene))
+            select(action: (pressedButton as! ButtonEntity).action , point)
         }else{
-            select(action: .Act, touch.location(in: scene))
+            select(action: .Act, point)
         }
-    }*/
+    }
     func select(action:ArenaAction, _ touch:CGPoint){
         touchManagerDelegate.announceInOverlay(action.rawValue)
         switch action {
