@@ -1,0 +1,560 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 48;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		F2EECADF20DB377F007942BF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2EECADE20DB377F007942BF /* AppDelegate.swift */; };
+		F2EECAE120DB377F007942BF /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = F2EECAE020DB377F007942BF /* GameScene.sks */; };
+		F2EECAE320DB377F007942BF /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = F2EECAE220DB377F007942BF /* Actions.sks */; };
+		F2EECAE520DB377F007942BF /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2EECAE420DB377F007942BF /* GameScene.swift */; };
+		F2EECAE720DB377F007942BF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2EECAE620DB377F007942BF /* ViewController.swift */; };
+		F2EECAE920DB377F007942BF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F2EECAE820DB377F007942BF /* Assets.xcassets */; };
+		F2EECAEC20DB377F007942BF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F2EECAEA20DB377F007942BF /* Main.storyboard */; };
+		F2EECAF820DB3780007942BF /* Flat_Land_ServerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2EECAF720DB3780007942BF /* Flat_Land_ServerTests.swift */; };
+		F2EECB0320DB3780007942BF /* Flat_Land_ServerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2EECB0220DB3780007942BF /* Flat_Land_ServerUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		F2EECAF420DB3780007942BF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F2EECAD320DB377F007942BF /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F2EECADA20DB377F007942BF;
+			remoteInfo = "Flat Land Server";
+		};
+		F2EECAFF20DB3780007942BF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F2EECAD320DB377F007942BF /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F2EECADA20DB377F007942BF;
+			remoteInfo = "Flat Land Server";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		F2EECADB20DB377F007942BF /* Flat Land Server.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Flat Land Server.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F2EECADE20DB377F007942BF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		F2EECAE020DB377F007942BF /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
+		F2EECAE220DB377F007942BF /* Actions.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Actions.sks; sourceTree = "<group>"; };
+		F2EECAE420DB377F007942BF /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
+		F2EECAE620DB377F007942BF /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		F2EECAE820DB377F007942BF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		F2EECAEB20DB377F007942BF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		F2EECAED20DB377F007942BF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F2EECAEE20DB377F007942BF /* Flat_Land_Server.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Flat_Land_Server.entitlements; sourceTree = "<group>"; };
+		F2EECAF320DB3780007942BF /* Flat Land ServerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Flat Land ServerTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F2EECAF720DB3780007942BF /* Flat_Land_ServerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Flat_Land_ServerTests.swift; sourceTree = "<group>"; };
+		F2EECAF920DB3780007942BF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F2EECAFE20DB3780007942BF /* Flat Land ServerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Flat Land ServerUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F2EECB0220DB3780007942BF /* Flat_Land_ServerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Flat_Land_ServerUITests.swift; sourceTree = "<group>"; };
+		F2EECB0420DB3780007942BF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		F2EECAD820DB377F007942BF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F2EECAF020DB3780007942BF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F2EECAFB20DB3780007942BF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		F2EECAD220DB377F007942BF = {
+			isa = PBXGroup;
+			children = (
+				F2EECADD20DB377F007942BF /* Flat Land Server */,
+				F2EECAF620DB3780007942BF /* Flat Land ServerTests */,
+				F2EECB0120DB3780007942BF /* Flat Land ServerUITests */,
+				F2EECADC20DB377F007942BF /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		F2EECADC20DB377F007942BF /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F2EECADB20DB377F007942BF /* Flat Land Server.app */,
+				F2EECAF320DB3780007942BF /* Flat Land ServerTests.xctest */,
+				F2EECAFE20DB3780007942BF /* Flat Land ServerUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F2EECADD20DB377F007942BF /* Flat Land Server */ = {
+			isa = PBXGroup;
+			children = (
+				F2EECADE20DB377F007942BF /* AppDelegate.swift */,
+				F2EECAE020DB377F007942BF /* GameScene.sks */,
+				F2EECAE220DB377F007942BF /* Actions.sks */,
+				F2EECAE420DB377F007942BF /* GameScene.swift */,
+				F2EECAE620DB377F007942BF /* ViewController.swift */,
+				F2EECAE820DB377F007942BF /* Assets.xcassets */,
+				F2EECAEA20DB377F007942BF /* Main.storyboard */,
+				F2EECAED20DB377F007942BF /* Info.plist */,
+				F2EECAEE20DB377F007942BF /* Flat_Land_Server.entitlements */,
+			);
+			path = "Flat Land Server";
+			sourceTree = "<group>";
+		};
+		F2EECAF620DB3780007942BF /* Flat Land ServerTests */ = {
+			isa = PBXGroup;
+			children = (
+				F2EECAF720DB3780007942BF /* Flat_Land_ServerTests.swift */,
+				F2EECAF920DB3780007942BF /* Info.plist */,
+			);
+			path = "Flat Land ServerTests";
+			sourceTree = "<group>";
+		};
+		F2EECB0120DB3780007942BF /* Flat Land ServerUITests */ = {
+			isa = PBXGroup;
+			children = (
+				F2EECB0220DB3780007942BF /* Flat_Land_ServerUITests.swift */,
+				F2EECB0420DB3780007942BF /* Info.plist */,
+			);
+			path = "Flat Land ServerUITests";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		F2EECADA20DB377F007942BF /* Flat Land Server */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F2EECB0720DB3780007942BF /* Build configuration list for PBXNativeTarget "Flat Land Server" */;
+			buildPhases = (
+				F2EECAD720DB377F007942BF /* Sources */,
+				F2EECAD820DB377F007942BF /* Frameworks */,
+				F2EECAD920DB377F007942BF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Flat Land Server";
+			productName = "Flat Land Server";
+			productReference = F2EECADB20DB377F007942BF /* Flat Land Server.app */;
+			productType = "com.apple.product-type.application";
+		};
+		F2EECAF220DB3780007942BF /* Flat Land ServerTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F2EECB0A20DB3780007942BF /* Build configuration list for PBXNativeTarget "Flat Land ServerTests" */;
+			buildPhases = (
+				F2EECAEF20DB3780007942BF /* Sources */,
+				F2EECAF020DB3780007942BF /* Frameworks */,
+				F2EECAF120DB3780007942BF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F2EECAF520DB3780007942BF /* PBXTargetDependency */,
+			);
+			name = "Flat Land ServerTests";
+			productName = "Flat Land ServerTests";
+			productReference = F2EECAF320DB3780007942BF /* Flat Land ServerTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		F2EECAFD20DB3780007942BF /* Flat Land ServerUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F2EECB0D20DB3780007942BF /* Build configuration list for PBXNativeTarget "Flat Land ServerUITests" */;
+			buildPhases = (
+				F2EECAFA20DB3780007942BF /* Sources */,
+				F2EECAFB20DB3780007942BF /* Frameworks */,
+				F2EECAFC20DB3780007942BF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F2EECB0020DB3780007942BF /* PBXTargetDependency */,
+			);
+			name = "Flat Land ServerUITests";
+			productName = "Flat Land ServerUITests";
+			productReference = F2EECAFE20DB3780007942BF /* Flat Land ServerUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		F2EECAD320DB377F007942BF /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0910;
+				LastUpgradeCheck = 0910;
+				ORGANIZATIONNAME = "Zackory Cui";
+				TargetAttributes = {
+					F2EECADA20DB377F007942BF = {
+						CreatedOnToolsVersion = 9.1;
+						ProvisioningStyle = Automatic;
+					};
+					F2EECAF220DB3780007942BF = {
+						CreatedOnToolsVersion = 9.1;
+						ProvisioningStyle = Automatic;
+						TestTargetID = F2EECADA20DB377F007942BF;
+					};
+					F2EECAFD20DB3780007942BF = {
+						CreatedOnToolsVersion = 9.1;
+						ProvisioningStyle = Automatic;
+						TestTargetID = F2EECADA20DB377F007942BF;
+					};
+				};
+			};
+			buildConfigurationList = F2EECAD620DB377F007942BF /* Build configuration list for PBXProject "Flat Land Server" */;
+			compatibilityVersion = "Xcode 8.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = F2EECAD220DB377F007942BF;
+			productRefGroup = F2EECADC20DB377F007942BF /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				F2EECADA20DB377F007942BF /* Flat Land Server */,
+				F2EECAF220DB3780007942BF /* Flat Land ServerTests */,
+				F2EECAFD20DB3780007942BF /* Flat Land ServerUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		F2EECAD920DB377F007942BF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F2EECAE120DB377F007942BF /* GameScene.sks in Resources */,
+				F2EECAE920DB377F007942BF /* Assets.xcassets in Resources */,
+				F2EECAE320DB377F007942BF /* Actions.sks in Resources */,
+				F2EECAEC20DB377F007942BF /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F2EECAF120DB3780007942BF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F2EECAFC20DB3780007942BF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		F2EECAD720DB377F007942BF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F2EECAE720DB377F007942BF /* ViewController.swift in Sources */,
+				F2EECAE520DB377F007942BF /* GameScene.swift in Sources */,
+				F2EECADF20DB377F007942BF /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F2EECAEF20DB3780007942BF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F2EECAF820DB3780007942BF /* Flat_Land_ServerTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F2EECAFA20DB3780007942BF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F2EECB0320DB3780007942BF /* Flat_Land_ServerUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		F2EECAF520DB3780007942BF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F2EECADA20DB377F007942BF /* Flat Land Server */;
+			targetProxy = F2EECAF420DB3780007942BF /* PBXContainerItemProxy */;
+		};
+		F2EECB0020DB3780007942BF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F2EECADA20DB377F007942BF /* Flat Land Server */;
+			targetProxy = F2EECAFF20DB3780007942BF /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		F2EECAEA20DB377F007942BF /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F2EECAEB20DB377F007942BF /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		F2EECB0520DB3780007942BF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		F2EECB0620DB3780007942BF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+			};
+			name = Release;
+		};
+		F2EECB0820DB3780007942BF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "Flat Land Server/Flat_Land_Server.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "Flat Land Server/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "dsf.Flat-Land-Server";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+			};
+			name = Debug;
+		};
+		F2EECB0920DB3780007942BF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "Flat Land Server/Flat_Land_Server.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "Flat Land Server/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "dsf.Flat-Land-Server";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+			};
+			name = Release;
+		};
+		F2EECB0B20DB3780007942BF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "Flat Land ServerTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "dsf.Flat-Land-ServerTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Flat Land Server.app/Contents/MacOS/Flat Land Server";
+			};
+			name = Debug;
+		};
+		F2EECB0C20DB3780007942BF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "Flat Land ServerTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "dsf.Flat-Land-ServerTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Flat Land Server.app/Contents/MacOS/Flat Land Server";
+			};
+			name = Release;
+		};
+		F2EECB0E20DB3780007942BF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "Flat Land ServerUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "dsf.Flat-Land-ServerUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TEST_TARGET_NAME = "Flat Land Server";
+			};
+			name = Debug;
+		};
+		F2EECB0F20DB3780007942BF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "Flat Land ServerUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "dsf.Flat-Land-ServerUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TEST_TARGET_NAME = "Flat Land Server";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		F2EECAD620DB377F007942BF /* Build configuration list for PBXProject "Flat Land Server" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F2EECB0520DB3780007942BF /* Debug */,
+				F2EECB0620DB3780007942BF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F2EECB0720DB3780007942BF /* Build configuration list for PBXNativeTarget "Flat Land Server" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F2EECB0820DB3780007942BF /* Debug */,
+				F2EECB0920DB3780007942BF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F2EECB0A20DB3780007942BF /* Build configuration list for PBXNativeTarget "Flat Land ServerTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F2EECB0B20DB3780007942BF /* Debug */,
+				F2EECB0C20DB3780007942BF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F2EECB0D20DB3780007942BF /* Build configuration list for PBXNativeTarget "Flat Land ServerUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F2EECB0E20DB3780007942BF /* Debug */,
+				F2EECB0F20DB3780007942BF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = F2EECAD320DB377F007942BF /* Project object */;
+}
