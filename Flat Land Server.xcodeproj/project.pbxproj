@@ -16,6 +16,31 @@
 		F2EECAEC20DB377F007942BF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F2EECAEA20DB377F007942BF /* Main.storyboard */; };
 		F2EECAF820DB3780007942BF /* Flat_Land_ServerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2EECAF720DB3780007942BF /* Flat_Land_ServerTests.swift */; };
 		F2EECB0320DB3780007942BF /* Flat_Land_ServerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2EECB0220DB3780007942BF /* Flat_Land_ServerUITests.swift */; };
+		F2EECB2D20DB37A9007942BF /* Entities.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2EECB1120DB37A9007942BF /* Entities.swift */; };
+		F2EECB2E20DB37A9007942BF /* MapManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2EECB1320DB37A9007942BF /* MapManager.swift */; };
+		F2EECB2F20DB37A9007942BF /* OverlayManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2EECB1420DB37A9007942BF /* OverlayManager.swift */; };
+		F2EECB3020DB37A9007942BF /* SceneManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2EECB1520DB37A9007942BF /* SceneManager.swift */; };
+		F2EECB3120DB37A9007942BF /* PhysicsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2EECB1620DB37A9007942BF /* PhysicsManager.swift */; };
+		F2EECB3220DB37A9007942BF /* ComponentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2EECB1720DB37A9007942BF /* ComponentManager.swift */; };
+		F2EECB3320DB37A9007942BF /* AgentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2EECB1820DB37A9007942BF /* AgentManager.swift */; };
+		F2EECB3420DB37A9007942BF /* TurretManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2EECB1920DB37A9007942BF /* TurretManager.swift */; };
+		F2EECB3520DB37A9007942BF /* ButtonManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2EECB1A20DB37A9007942BF /* ButtonManager.swift */; };
+		F2EECB3620DB37A9007942BF /* TouchManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2EECB1B20DB37A9007942BF /* TouchManager.swift */; };
+		F2EECB3720DB37A9007942BF /* EntityManagerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2EECB1C20DB37A9007942BF /* EntityManagerExtension.swift */; };
+		F2EECB3820DB37A9007942BF /* EntityStates.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2EECB1D20DB37A9007942BF /* EntityStates.swift */; };
+		F2EECB3920DB37A9007942BF /* HealthComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2EECB1F20DB37A9007942BF /* HealthComponents.swift */; };
+		F2EECB3A20DB37A9007942BF /* BulletComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2EECB2020DB37A9007942BF /* BulletComponent.swift */; };
+		F2EECB3B20DB37A9007942BF /* SpriteComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2EECB2120DB37A9007942BF /* SpriteComponent.swift */; };
+		F2EECB3C20DB37A9007942BF /* AgentComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2EECB2220DB37A9007942BF /* AgentComponent.swift */; };
+		F2EECB3D20DB37A9007942BF /* TurretComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2EECB2320DB37A9007942BF /* TurretComponent.swift */; };
+		F2EECB3E20DB37A9007942BF /* PhysicsComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2EECB2420DB37A9007942BF /* PhysicsComponent.swift */; };
+		F2EECB3F20DB37A9007942BF /* DisappearComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2EECB2520DB37A9007942BF /* DisappearComponent.swift */; };
+		F2EECB4020DB37A9007942BF /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2EECB2620DB37A9007942BF /* Util.swift */; };
+		F2EECB4120DB37A9007942BF /* ArenaModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2EECB2720DB37A9007942BF /* ArenaModel.swift */; };
+		F2EECB4220DB37A9007942BF /* BuildingEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2EECB2920DB37A9007942BF /* BuildingEntity.swift */; };
+		F2EECB4320DB37A9007942BF /* BulletEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2EECB2A20DB37A9007942BF /* BulletEntity.swift */; };
+		F2EECB4420DB37A9007942BF /* ShapeTankEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2EECB2B20DB37A9007942BF /* ShapeTankEntity.swift */; };
+		F2EECB4520DB37A9007942BF /* ShapeEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2EECB2C20DB37A9007942BF /* ShapeEntity.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +77,31 @@
 		F2EECAFE20DB3780007942BF /* Flat Land ServerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Flat Land ServerUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F2EECB0220DB3780007942BF /* Flat_Land_ServerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Flat_Land_ServerUITests.swift; sourceTree = "<group>"; };
 		F2EECB0420DB3780007942BF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F2EECB1120DB37A9007942BF /* Entities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Entities.swift; sourceTree = "<group>"; };
+		F2EECB1320DB37A9007942BF /* MapManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapManager.swift; sourceTree = "<group>"; };
+		F2EECB1420DB37A9007942BF /* OverlayManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OverlayManager.swift; sourceTree = "<group>"; };
+		F2EECB1520DB37A9007942BF /* SceneManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneManager.swift; sourceTree = "<group>"; };
+		F2EECB1620DB37A9007942BF /* PhysicsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhysicsManager.swift; sourceTree = "<group>"; };
+		F2EECB1720DB37A9007942BF /* ComponentManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComponentManager.swift; sourceTree = "<group>"; };
+		F2EECB1820DB37A9007942BF /* AgentManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AgentManager.swift; sourceTree = "<group>"; };
+		F2EECB1920DB37A9007942BF /* TurretManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TurretManager.swift; sourceTree = "<group>"; };
+		F2EECB1A20DB37A9007942BF /* ButtonManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonManager.swift; sourceTree = "<group>"; };
+		F2EECB1B20DB37A9007942BF /* TouchManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TouchManager.swift; sourceTree = "<group>"; };
+		F2EECB1C20DB37A9007942BF /* EntityManagerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntityManagerExtension.swift; sourceTree = "<group>"; };
+		F2EECB1D20DB37A9007942BF /* EntityStates.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntityStates.swift; sourceTree = "<group>"; };
+		F2EECB1F20DB37A9007942BF /* HealthComponents.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HealthComponents.swift; sourceTree = "<group>"; };
+		F2EECB2020DB37A9007942BF /* BulletComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BulletComponent.swift; sourceTree = "<group>"; };
+		F2EECB2120DB37A9007942BF /* SpriteComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpriteComponent.swift; sourceTree = "<group>"; };
+		F2EECB2220DB37A9007942BF /* AgentComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AgentComponent.swift; sourceTree = "<group>"; };
+		F2EECB2320DB37A9007942BF /* TurretComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TurretComponent.swift; sourceTree = "<group>"; };
+		F2EECB2420DB37A9007942BF /* PhysicsComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhysicsComponent.swift; sourceTree = "<group>"; };
+		F2EECB2520DB37A9007942BF /* DisappearComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisappearComponent.swift; sourceTree = "<group>"; };
+		F2EECB2620DB37A9007942BF /* Util.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
+		F2EECB2720DB37A9007942BF /* ArenaModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArenaModel.swift; sourceTree = "<group>"; };
+		F2EECB2920DB37A9007942BF /* BuildingEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BuildingEntity.swift; sourceTree = "<group>"; };
+		F2EECB2A20DB37A9007942BF /* BulletEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BulletEntity.swift; sourceTree = "<group>"; };
+		F2EECB2B20DB37A9007942BF /* ShapeTankEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShapeTankEntity.swift; sourceTree = "<group>"; };
+		F2EECB2C20DB37A9007942BF /* ShapeEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShapeEntity.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +152,7 @@
 		F2EECADD20DB377F007942BF /* Flat Land Server */ = {
 			isa = PBXGroup;
 			children = (
+				F2EECB1020DB37A9007942BF /* Models */,
 				F2EECADE20DB377F007942BF /* AppDelegate.swift */,
 				F2EECAE020DB377F007942BF /* GameScene.sks */,
 				F2EECAE220DB377F007942BF /* Actions.sks */,
@@ -131,6 +182,62 @@
 				F2EECB0420DB3780007942BF /* Info.plist */,
 			);
 			path = "Flat Land ServerUITests";
+			sourceTree = "<group>";
+		};
+		F2EECB1020DB37A9007942BF /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				F2EECB1120DB37A9007942BF /* Entities.swift */,
+				F2EECB1220DB37A9007942BF /* managers */,
+				F2EECB1C20DB37A9007942BF /* EntityManagerExtension.swift */,
+				F2EECB1D20DB37A9007942BF /* EntityStates.swift */,
+				F2EECB1E20DB37A9007942BF /* Components */,
+				F2EECB2620DB37A9007942BF /* Util.swift */,
+				F2EECB2720DB37A9007942BF /* ArenaModel.swift */,
+				F2EECB2820DB37A9007942BF /* entities */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		F2EECB1220DB37A9007942BF /* managers */ = {
+			isa = PBXGroup;
+			children = (
+				F2EECB1320DB37A9007942BF /* MapManager.swift */,
+				F2EECB1420DB37A9007942BF /* OverlayManager.swift */,
+				F2EECB1520DB37A9007942BF /* SceneManager.swift */,
+				F2EECB1620DB37A9007942BF /* PhysicsManager.swift */,
+				F2EECB1720DB37A9007942BF /* ComponentManager.swift */,
+				F2EECB1820DB37A9007942BF /* AgentManager.swift */,
+				F2EECB1920DB37A9007942BF /* TurretManager.swift */,
+				F2EECB1A20DB37A9007942BF /* ButtonManager.swift */,
+				F2EECB1B20DB37A9007942BF /* TouchManager.swift */,
+			);
+			path = managers;
+			sourceTree = "<group>";
+		};
+		F2EECB1E20DB37A9007942BF /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				F2EECB1F20DB37A9007942BF /* HealthComponents.swift */,
+				F2EECB2020DB37A9007942BF /* BulletComponent.swift */,
+				F2EECB2120DB37A9007942BF /* SpriteComponent.swift */,
+				F2EECB2220DB37A9007942BF /* AgentComponent.swift */,
+				F2EECB2320DB37A9007942BF /* TurretComponent.swift */,
+				F2EECB2420DB37A9007942BF /* PhysicsComponent.swift */,
+				F2EECB2520DB37A9007942BF /* DisappearComponent.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		F2EECB2820DB37A9007942BF /* entities */ = {
+			isa = PBXGroup;
+			children = (
+				F2EECB2920DB37A9007942BF /* BuildingEntity.swift */,
+				F2EECB2A20DB37A9007942BF /* BulletEntity.swift */,
+				F2EECB2B20DB37A9007942BF /* ShapeTankEntity.swift */,
+				F2EECB2C20DB37A9007942BF /* ShapeEntity.swift */,
+			);
+			path = entities;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -268,9 +375,34 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F2EECB3A20DB37A9007942BF /* BulletComponent.swift in Sources */,
+				F2EECB3E20DB37A9007942BF /* PhysicsComponent.swift in Sources */,
+				F2EECB4320DB37A9007942BF /* BulletEntity.swift in Sources */,
+				F2EECB3D20DB37A9007942BF /* TurretComponent.swift in Sources */,
 				F2EECAE720DB377F007942BF /* ViewController.swift in Sources */,
+				F2EECB2E20DB37A9007942BF /* MapManager.swift in Sources */,
+				F2EECB3C20DB37A9007942BF /* AgentComponent.swift in Sources */,
+				F2EECB3420DB37A9007942BF /* TurretManager.swift in Sources */,
+				F2EECB2F20DB37A9007942BF /* OverlayManager.swift in Sources */,
+				F2EECB3820DB37A9007942BF /* EntityStates.swift in Sources */,
+				F2EECB3020DB37A9007942BF /* SceneManager.swift in Sources */,
+				F2EECB3520DB37A9007942BF /* ButtonManager.swift in Sources */,
+				F2EECB4120DB37A9007942BF /* ArenaModel.swift in Sources */,
 				F2EECAE520DB377F007942BF /* GameScene.swift in Sources */,
+				F2EECB4520DB37A9007942BF /* ShapeEntity.swift in Sources */,
+				F2EECB3220DB37A9007942BF /* ComponentManager.swift in Sources */,
+				F2EECB3620DB37A9007942BF /* TouchManager.swift in Sources */,
+				F2EECB4020DB37A9007942BF /* Util.swift in Sources */,
+				F2EECB3120DB37A9007942BF /* PhysicsManager.swift in Sources */,
+				F2EECB2D20DB37A9007942BF /* Entities.swift in Sources */,
+				F2EECB4220DB37A9007942BF /* BuildingEntity.swift in Sources */,
 				F2EECADF20DB377F007942BF /* AppDelegate.swift in Sources */,
+				F2EECB4420DB37A9007942BF /* ShapeTankEntity.swift in Sources */,
+				F2EECB3920DB37A9007942BF /* HealthComponents.swift in Sources */,
+				F2EECB3720DB37A9007942BF /* EntityManagerExtension.swift in Sources */,
+				F2EECB3B20DB37A9007942BF /* SpriteComponent.swift in Sources */,
+				F2EECB3320DB37A9007942BF /* AgentManager.swift in Sources */,
+				F2EECB3F20DB37A9007942BF /* DisappearComponent.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
