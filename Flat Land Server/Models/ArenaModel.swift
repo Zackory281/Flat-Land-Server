@@ -11,6 +11,12 @@ import SpriteKit
 import GameplayKit
 
 class ArenaModel: NSObject, SKSceneDelegate, ArenaDelegate, EntitManagerDelegate, TouchManagerDelegate, TurretManagerDelegate, PhysicsManagerDelegate, ArenaSceneTouchDelegate{
+    func makeAllTankGo(direction: Direction?) {
+        componentManager.getEntitiesOf(type: ShapeTankEntity.self).forEach{ tank in
+            tank.direction = direction
+        }
+    }
+    
     
     var delegate:ArenaDelegate?
     let scene:ArenaScene!
@@ -98,6 +104,9 @@ class ArenaModel: NSObject, SKSceneDelegate, ArenaDelegate, EntitManagerDelegate
     }
     func clicked(point:CGPoint) -> Void {
         touchManager.touched(point: point)
+    }
+    func goDirection(){
+        
     }
     func announceInOverlay(_ text: String) {
         //print("to announce\(text)")

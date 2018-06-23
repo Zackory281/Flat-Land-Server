@@ -14,6 +14,7 @@ class PhysicsComponent: GKComponent {
     var spriteNode:SKNode?{
         return entity?.component(ofType: SpriteComponent.self)?.spriteNode
     }
+    var impulseDirection:CGVector = CGVector.zero
     override init() {
         physicsBody = SKPhysicsBody(texture: SKTexture(image:#imageLiteral(resourceName: "triangle")), size: CGSize(width: 30, height: 30))
         super.init()
@@ -51,9 +52,12 @@ class PhysicsComponent: GKComponent {
         physicsBody.contactTestBitMask = masks.cont
     }
     override func update(deltaTime seconds: TimeInterval) {
+        
         if spriteNode != nil, spriteNode?.physicsBody == nil{
             spriteNode!.physicsBody = self.physicsBody
         }
+        
+        physicsBody.applyImpulse(impulseDirection)
     }
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

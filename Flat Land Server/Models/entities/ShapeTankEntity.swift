@@ -11,6 +11,12 @@ import GameplayKit
 
 class ShapeTankEntity:GKEntity {
     var tank:TankEntity
+    var direction:Direction?{
+        didSet{
+            guard let _ = direction else {physicsComponent.impulseDirection = CGVector.zero; return;}
+            physicsComponent.impulseDirection = DirectionForImpulse[direction!]!
+        }
+    }
     init(type:EntityType, position: CGPoint, scene: SceneComponentDelegate?, turretDelegate:TurretDelegate, map:MapComponentDelegate, arena:ArenaDelegate) {
         self.turretDelegate = turretDelegate
         self.arena = arena
@@ -22,11 +28,10 @@ class ShapeTankEntity:GKEntity {
         self.addComponent(TurretComponent(turret: turretDelegate, map: map))
         self.addComponent(SpriteComponent.init(tank: tank, scene: scene))
         self.addComponent(PhysicsComponent(tank:self.tank))
-        self.addComponent(AgentComponent())
+        //self.addComponent(AgentComponent())
         self.addComponent(HealthComponent())
         self.addComponent(DisappearComponent(function: disappearingFunction, arena: arena))
     }
-    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -36,6 +41,7 @@ class ShapeTankEntity:GKEntity {
     var spriteComponent:SpriteComponent{ return self.component(ofType: SpriteComponent.self)! }
     var healthComponent:HealthComponent{ return self.component(ofType: HealthComponent.self)! }
     var agentComponent:AgentComponent{ return self.component(ofType: AgentComponent.self)! }
+    var physicsComponent:PhysicsComponent{ return self.component(ofType: PhysicsComponent.self)! }
     let disappearingFunction:DisappearFunction = { (entity:GKEntity)->Bool in
         return entity.component(ofType: HealthComponent.self)?.isDead() ?? true
     }
