@@ -54,7 +54,7 @@ class SpriteComponent:GKComponent{
             ]
         let string = NSAttributedString(string: text, attributes: key)
         let label = SKLabelNode()
-        if #available(iOS 11.0, *){
+        if #available(OSX 13.0, *){
             label.attributedText = string
         }else{
             label.text = text
