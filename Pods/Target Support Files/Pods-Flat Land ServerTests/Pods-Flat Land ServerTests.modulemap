@@ -1,0 +1,6 @@
+framework module Pods_Flat_Land_ServerTests {
+  umbrella header "Pods-Flat Land ServerTests-umbrella.h"
+
+  export *
+  module * { export * }
+}
