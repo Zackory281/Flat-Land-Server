@@ -10,30 +10,6 @@ import Foundation
 import GameplayKit
 import SpriteKit
 
-//class BuildingEntity:GKEntity{
-//    var obstacle:GKObstacle
-//    let unit:Float = 20
-//    let points:[float2]
-//    let rect:CGRect
-//    let position:CGPoint
-//    var scene:SceneComponentDelegate?
-//    init(rect:CGRect=CGRect.init(x: 0, y: 0, width: 40, height: 40),position:CGPoint, scene:SceneComponentDelegate?=nil) {
-//        points = [float2(-unit,unit),float2(-unit,-unit),float2(unit,-unit),float2(unit,unit)]
-//        obstacle = GKPolygonObstacle(points: points)
-//        self.rect = rect
-//        self.position = position
-//        self.scene = scene
-//        super.init()
-//        addComponent(SpriteComponent(building: self, scene:scene))
-//    }
-//    convenience init(_ x:Int,_ y:Int,_ w:Int,_ h:Int, scene:SceneComponentDelegate) {
-//        self.init(rect:CGRect(x: -w/2, y: -h/2, width: w, height: h), position:CGPoint(x: x, y: y), scene:scene)
-//    }
-//    required init?(coder aDecoder: NSCoder) {
-//        fatalError("init(coder:) has not been implemented")
-//    }
-//}
-
 class ButtonEntity:GKEntity{
     var label:String{ return action.rawValue }
     let action:ArenaAction

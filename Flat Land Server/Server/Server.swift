@@ -58,7 +58,8 @@ class Server{
     }
 }
 
-public protocol ServerDelegate{
+@objc protocol ServerDelegate{
+    @objc optional func receiveMessage(message:String);
     func receiveData(data:Data);
 }
 

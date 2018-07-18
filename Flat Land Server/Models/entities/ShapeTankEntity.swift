@@ -9,7 +9,7 @@
 import Foundation
 import GameplayKit
 
-class ShapeTankEntity:GKEntity {
+class ShapeTankEntity:GKEntity, Controllable {
     var tank:TankEntity
     var direction:Direction?{
         didSet{
@@ -45,6 +45,16 @@ class ShapeTankEntity:GKEntity {
     let disappearingFunction:DisappearFunction = { (entity:GKEntity)->Bool in
         return entity.component(ofType: HealthComponent.self)?.isDead() ?? true
     }
+    
+    func move(_ direction: CGVector) {
+        print("i am told to move \(direction)")
+    }
+}
+
+@objc protocol Controllable {
+    @objc optional func move(_ direction:CGVector)
+    @objc optional func fire(_ fire:Bool)
+    @objc optional func rotate(_ angle:Float)
 }
 
 struct TankEntity {
