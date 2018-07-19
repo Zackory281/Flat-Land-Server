@@ -41,15 +41,6 @@ class Server{
         }
     }
     
-    func sendData(_ data:Data){
-        do{
-            print(String(data:data, encoding:.utf8))
-            //try socket.write(from: data, to: Socket.createAddress(for: "localhost", on: Int32(port))!)
-        }catch{
-            print("failed to print \(data) \(error)")
-        }
-    }
-    
     func recieveData(_ data:Data, _ info:MessageInfo){
         delegate?.receiveData(data: data, messageInfo: info)
         do{

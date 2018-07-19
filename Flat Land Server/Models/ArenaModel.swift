@@ -144,3 +144,10 @@ extension ArenaModel{
         addEntity(entity: ButtonEntity(10,340,100,100,action: ArenaAction.Remove, scene:sceneManager))
     }
 }
+extension ArenaModel{//ModelController extension
+    func addEntity() -> Controllable {
+        let entity = ShapeTankEntity(type: .Circle,position:CGPoint.init(x: 100, y: 100), scene:self.sceneManager, turretDelegate:turretManager, map:self.mapManager, arena:self)
+        self.addEntity(entity: entity)
+        return entity
+    }
+}

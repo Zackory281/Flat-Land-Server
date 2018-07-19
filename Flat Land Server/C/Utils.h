@@ -13,7 +13,7 @@
 
 #define MAX_NAME_LEN 6
 
-enum Direction{
+enum ControlDirection{
     UP,
     DOWN,
     RIGHT,
@@ -29,7 +29,7 @@ struct PlayerInitPacket{
 
 struct PlayerControlPacket {
     int8_t opcode;
-    enum Direction direction;
+    enum ControlDirection direction;
     float angle;
 };
 

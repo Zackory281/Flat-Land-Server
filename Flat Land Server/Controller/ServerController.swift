@@ -11,7 +11,7 @@ import Compression
 import Socket
 
 
-class ServerModelController:ServerDelegate {
+class ServerModelController:ServerDelegate{
     
     let server:Server
     let encoder:JSONEncoder = JSONEncoder()

@@ -9,13 +9,14 @@
 import Foundation
 import Socket
 
-class ArenaModelController:ServerControllerDelegate {
+class ArenaModelController:ServerControllerDelegate, PlayerModelControllerDelegate {
     
     var arenaModel:ArenaModel
     var serverController:ServerModelController
     var playerController:PlayerModelController
     var players = Dictionary<String, Player>()
     
+    //ServerControllerDelegate
     func addPlayer(playerInit: PlayerInitPacket, address: Socket.Address) {
         let ptr = getPlayerName(playerInit)!
         let name = String(cString: ptr)
@@ -24,7 +25,12 @@ class ArenaModelController:ServerControllerDelegate {
     }
     
     func updatePlayer(playerControl: PlayerControlPacket, address: Socket.Address) {
-        
+        playerController.updatePlayer(address: address, direction: playerControl.direction, fire: false, angle: playerControl.angle)
+    }
+    
+    //PlayerModelControllerDelegate
+    func getNewPlayerEntity() -> Controllable {
+        return arenaModel.addEntity()
     }
     
     init?(size:CGSize)throws{
@@ -32,6 +38,7 @@ class ArenaModelController:ServerControllerDelegate {
         serverController = ServerModelController()!
         playerController = PlayerModelController()
         serverController.delegate = self
+        playerController.delegate = self
     }
     
     func startServer() {
