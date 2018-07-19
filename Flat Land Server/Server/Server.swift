@@ -11,6 +11,8 @@ import SpriteKit
 import Socket
 
 typealias MessageInfo = (bytesRead: Int, address: Socket.Address?)
+typealias HostPortInfo = (hostname: String, port: Int32)
+
 class Server{
     
     var socket:Socket!
@@ -49,7 +51,7 @@ class Server{
     }
     
     func recieveData(_ data:Data, _ info:MessageInfo){
-        delegate?.receiveData(data: data)
+        delegate?.receiveData(data: data, messageInfo: info)
         do{
             try self.socket.write(from: "I repeat \(String(data:data, encoding:.utf8) ?? "ur message was poop")", to: info.address!)
         }catch{
@@ -58,9 +60,8 @@ class Server{
     }
 }
 
-@objc protocol ServerDelegate{
-    @objc optional func receiveMessage(message:String);
-    func receiveData(data:Data);
+protocol ServerDelegate{
+    func receiveData(data:Data,messageInfo:MessageInfo);
 }
 
 

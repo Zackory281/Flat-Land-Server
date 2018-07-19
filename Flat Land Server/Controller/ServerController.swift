@@ -7,12 +7,17 @@
 //
 
 import Foundation
+import Compression
+import Socket
+
 
 class ServerModelController:ServerDelegate {
     
     let server:Server
     let encoder:JSONEncoder = JSONEncoder()
     let decoder:JSONDecoder = JSONDecoder()
+    var delegate:ServerControllerDelegate?
+    
     init?() {
         do{
             try self.server = Server()
@@ -26,17 +31,28 @@ class ServerModelController:ServerDelegate {
             }
         }
         server.delegate = self
+        dataTest()
     }
     
-    func receiveData(data:Data){
-        do{
-            let ha = PlayerRequest(directions: ["Lucy", "Zack", "Jero"], angle: 1.999, fire: true)
-            let endata = try encoder.encode(ha)
-            server.sendData(endata)
-            let json = try JSONDecoder().decode(PlayerRequest.self, from: endata)
-            print(json)
-        }catch{
-            print("received data from server controller: \(data)")
+    func processPayLoad(_ packet:PlayerPacket, _ info:MessageInfo){
+        guard let delegate = self.delegate else { print("server delegate not set"); return}
+        let opcode = packet.initPacket.opcode
+        switch opcode {
+        case 0:
+            delegate.addPlayer(playerInit: packet.initPacket, address: info.address!)
+        case 1:
+            delegate.updatePlayer(playerControl: packet.controlPacket, address: info.address!)
+        default:
+            print("not a recognized opcode: \(opcode)")
+        }
+    }
+    
+    func dataTest(){}
+    
+    func receiveData(data:Data, messageInfo:MessageInfo){
+        //print(Socket.hostnameAndPort(from:messageInfo.address!))
+        data.withUnsafeBytes { (pointer:UnsafePointer<PlayerPacket>) in
+            processPayLoad(pointer.pointee, messageInfo)
         }
     }
     
@@ -44,8 +60,13 @@ class ServerModelController:ServerDelegate {
         server.startListening()
     }
 }
+
+protocol ServerControllerDelegate {
+    func updatePlayer(playerControl:PlayerControlPacket, address: Socket.Address)
+    func addPlayer(playerInit:PlayerInitPacket, address:Socket.Address)
+}
 struct PlayerRequest:Codable {
-    var directions:[String]?
+    var keys:[String]?
     var angle:Float?
     var fire:Bool?
 }

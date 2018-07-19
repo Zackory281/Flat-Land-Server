@@ -9,30 +9,42 @@
 import Foundation
 import Socket
 
-class PlayerController{
-    var players = Set<Player>()
+class PlayerModelController{
+    var players = Dictionary<String, Player>()
     init() {
         
     }
     
     func addPlayer(address:Socket.Address, name:String="An unnamed Lucy") {
-        players.insert(Player(address: address, name: name))
+        guard let playerKey = getAddressKey(address: address), !players.keys.contains(playerKey) else {print("not adding an existing player"); return;}
+        //players[playerKey] = Player(address: address, name: name)
+        print("added player: \(playerKey), \(name)")
+    }
+    
+    func updatePlayer(address:Socket.Address, direction:ControlDirection, fire:Bool, angle:Float32){
+        
     }
 }
 
-class Player:Hashable{
-    static func == (lhs: Player, rhs: Player) -> Bool {
-        return false
-    }
-    
-    func hash(into hasher: inout Hasher) {
-        hasher.combine(self.name)
-    }
-    
+class Player{
     let address:Socket.Address
     let name:String
-    init(address:Socket.Address, name:String) {
+    var controllable:Controllable?
+    init(address:Socket.Address, name:String, controllable:Controllable) {
         self.address = address
         self.name = name
+        self.controllable = controllable
     }
+}
+
+enum ControlDirection {
+    case UP
+    case DOWN
+    case RIGHT
+    case LEFT
+}
+
+func getAddressKey(address: Socket.Address) -> String?{
+    guard let info = Socket.hostnameAndPort(from: address) else {return nil}
+    return info.hostname+":"+String(info.port)
 }

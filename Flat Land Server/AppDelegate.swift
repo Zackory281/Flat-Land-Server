@@ -17,7 +17,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             if let arenaViewController = NSApplication.shared.mainWindow?.contentViewController as? ArenaViewController {
                 let modelController = try ArenaModelController(size: CGSize(width: 900, height: 900))
                 arenaViewController.gameModelController = modelController
-                arenaViewController.presentScene()
+                //arenaViewController.presentScene()
                 modelController!.startServer()
             }
         }catch{

@@ -1,0 +1,5 @@
+.DS_Store
+/.build
+/Packages
+/*.xcodeproj
+Flat Land Server.xcworkspace/xcuserdata/zackorycramer.xcuserdatad/UserInterfaceState.xcuserstate
