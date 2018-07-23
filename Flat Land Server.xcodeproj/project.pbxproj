@@ -281,7 +281,7 @@
 				F203AC3520FFBFC3006E245F /* C */,
 				F2D50E0420FE537F008CA141 /* Controller */,
 				F24B5C4720F992A600EDEEE9 /* Server */,
-				F2EECB1020DB37A9007942BF /* Models */,
+				F2EECB1020DB37A9007942BF /* GameModels */,
 				F2EECADE20DB377F007942BF /* AppDelegate.swift */,
 				F2EECAE020DB377F007942BF /* GameScene.sks */,
 				F2EECAE220DB377F007942BF /* Actions.sks */,
@@ -313,7 +313,7 @@
 			path = "Flat Land ServerUITests";
 			sourceTree = "<group>";
 		};
-		F2EECB1020DB37A9007942BF /* Models */ = {
+		F2EECB1020DB37A9007942BF /* GameModels */ = {
 			isa = PBXGroup;
 			children = (
 				F2EECB1120DB37A9007942BF /* Entities.swift */,
@@ -326,7 +326,7 @@
 				F2EECB2820DB37A9007942BF /* entities */,
 				F2EECB4620DB3B36007942BF /* ArenaScene.swift */,
 			);
-			path = Models;
+			path = GameModels;
 			sourceTree = "<group>";
 		};
 		F2EECB1220DB37A9007942BF /* managers */ = {

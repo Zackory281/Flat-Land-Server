@@ -49,6 +49,19 @@ class Server{
             print("error echoing \(error)")
         }
     }
+    
+    func writeData(_ data:Data, address:Socket.Address){
+        do{
+            try socket!.write(from: data, to: address)
+            print("written \(data) bytes to \(getHostDataString(address))")
+        }catch{
+            print("failed to write data\(data) to add\(getHostDataString(address)))")
+        }
+    }
+}
+
+func getHostDataString(_ address:Socket.Address) -> String{
+    return String(describing: Socket.hostnameAndPort(from: address))
 }
 
 protocol ServerDelegate{

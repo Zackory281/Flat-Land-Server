@@ -31,23 +31,29 @@ class ServerModelController:ServerDelegate{
             }
         }
         server.delegate = self
-        dataTest()
     }
     
     func processPayLoad(_ packet:PlayerPacket, _ info:MessageInfo){
         guard let delegate = self.delegate else { print("server delegate not set"); return}
         let opcode = packet.initPacket.opcode
-        switch opcode {
-        case 0:
+        switch Int32(opcode) {
+        case Init_opcode:
             delegate.addPlayer(playerInit: packet.initPacket, address: info.address!)
-        case 1:
+        case Update_opcode:
             delegate.updatePlayer(playerControl: packet.controlPacket, address: info.address!)
+        case Check_opcode:
+            sendConnectionCheckPack(hash: packet.connectionCheckPacket.hash, address: info.address!)
         default:
             print("not a recognized opcode: \(opcode)")
         }
     }
     
-    func dataTest(){}
+    
+    func sendConnectionCheckPack(hash:Int32, address:Socket.Address){
+        let checkPacketPtr = getCheckPacket(hash)
+        server.writeData(Data(bytes: checkPacketPtr!, count: MemoryLayout<PlayerConnectionCheckPacket>.size), address: address)
+        free(checkPacketPtr)
+    }
     
     func receiveData(data:Data, messageInfo:MessageInfo){
         //print(Socket.hostnameAndPort(from:messageInfo.address!))

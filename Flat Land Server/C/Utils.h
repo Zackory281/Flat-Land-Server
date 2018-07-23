@@ -11,6 +11,9 @@
 
 #include <stdio.h>
 
+#define Init_opcode 0
+#define Check_opcode 1
+#define Update_opcode 2
 #define MAX_NAME_LEN 6
 
 enum ControlDirection{
@@ -22,9 +25,14 @@ enum ControlDirection{
 
 struct PlayerInitPacket{
     int8_t opcode;
-    char name[MAX_NAME_LEN];
+    char name[6];
     int8_t id;
     int8_t config;
+};
+
+struct PlayerConnectionCheckPacket{
+    int8_t opcode;
+    int32_t hash;
 };
 
 struct PlayerControlPacket {
@@ -36,9 +44,12 @@ struct PlayerControlPacket {
 typedef union{
     struct PlayerInitPacket initPacket;
     struct PlayerControlPacket controlPacket;
+    struct PlayerConnectionCheckPacket connectionCheckPacket;
 }PlayerPacket;
 
 char* getPlayerName(struct PlayerInitPacket packet);
-int32_t getPlayerId(struct PlayerInitPacket *packet);
+struct PlayerInitPacket* getInitPacket(char* name, int8_t id, int8_t config);
+struct PlayerConnectionCheckPacket* getCheckPacket(int32_t hash);
+struct PlayerControlPacket* getControlPacket(float angle,enum ControlDirection direction);
 
 #endif /* Utils_h */
