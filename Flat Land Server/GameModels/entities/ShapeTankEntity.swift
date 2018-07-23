@@ -11,12 +11,7 @@ import GameplayKit
 
 class ShapeTankEntity:GKEntity, Controllable {
     var tank:TankEntity
-    var direction:Direction?{
-        didSet{
-            guard let _ = direction else {physicsComponent.impulseDirection = CGVector.zero; return;}
-            physicsComponent.impulseDirection = DirectionForImpulse[direction!]!
-        }
-    }
+    var direction:Direction?
     init(type:EntityType, position: CGPoint, scene: SceneComponentDelegate?, turretDelegate:TurretDelegate, map:MapComponentDelegate, arena:ArenaDelegate) {
         self.turretDelegate = turretDelegate
         self.arena = arena
@@ -48,6 +43,7 @@ class ShapeTankEntity:GKEntity, Controllable {
     
     func move(_ direction: CGVector) {
         print("i am told to move \(direction)")
+        self.physicsComponent.impulseDirection = direction
     }
 }
 

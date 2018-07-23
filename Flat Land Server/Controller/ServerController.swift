@@ -33,12 +33,13 @@ class ServerModelController:ServerDelegate{
         server.delegate = self
     }
     
-    func processPayLoad(_ packet:PlayerPacket, _ info:MessageInfo){
+    func processPayLoad(_ packet:PlayerPacket, _ info:MessageInfo, hash:Int){
         guard let delegate = self.delegate else { print("server delegate not set"); return}
         let opcode = packet.initPacket.opcode
         switch Int32(opcode) {
         case Init_opcode:
             delegate.addPlayer(playerInit: packet.initPacket, address: info.address!)
+            sendConnectionCheckPack(hash: Int32(hash), address: info.address!)
         case Update_opcode:
             delegate.updatePlayer(playerControl: packet.controlPacket, address: info.address!)
         case Check_opcode:
@@ -58,7 +59,7 @@ class ServerModelController:ServerDelegate{
     func receiveData(data:Data, messageInfo:MessageInfo){
         //print(Socket.hostnameAndPort(from:messageInfo.address!))
         data.withUnsafeBytes { (pointer:UnsafePointer<PlayerPacket>) in
-            processPayLoad(pointer.pointee, messageInfo)
+            processPayLoad(pointer.pointee, messageInfo, hash:data.hashValue)
         }
     }
     

@@ -116,7 +116,6 @@ class ArenaModel: NSObject, SKSceneDelegate, ArenaDelegate, EntitManagerDelegate
         guard let _ = lastTime else { lastTime = currentTime; return;}
         componentManager.update(currentTime - lastTime!)
         lastTime = currentTime
-        print("gravy leaves")
     }
 }
 protocol ArenaDelegate {
