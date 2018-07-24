@@ -25,7 +25,13 @@ class ArenaModelController:ServerControllerDelegate, PlayerModelControllerDelega
     }
     
     func updatePlayer(playerControl: PlayerControlPacket, address: Socket.Address) {
-        playerController.updatePlayer(address: address, direction: playerControl.direction, fire: false, angle: playerControl.angle)
+        playerController.updatePlayer(address: address, dx: playerControl.dx, dy:playerControl.dy, fire: false, angle: playerControl.angle)
+    }
+    
+    func getAllPlayerAddresses()->[Socket.Address]{
+        return playerController.players.values.map{
+            return $0.address
+        }
     }
     
     //PlayerModelControllerDelegate

@@ -12,10 +12,13 @@ import Cocoa
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
     
+    weak var arenaModelController:ArenaModelController?
+    
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         do{
             if let arenaViewController = NSApplication.shared.mainWindow?.contentViewController as? ArenaViewController {
                 let modelController = try ArenaModelController(size: CGSize(width: 900, height: 900))
+                self.arenaModelController = modelController
                 arenaViewController.gameModelController = modelController
                 arenaViewController.presentScene()
                 modelController!.startServer()
@@ -28,7 +31,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationWillFinishLaunching(_ notification: Notification) {
     }
     func applicationWillTerminate(_ aNotification: Notification) {
-        // Insert code here to tear down your application
+        guard let controller = arenaModelController else{ return }
+        controller.serverController.sendServerOpcode(code: SERVER_EXIT, address: nil)
     }
     
     

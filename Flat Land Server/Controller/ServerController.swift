@@ -56,6 +56,18 @@ class ServerModelController:ServerDelegate{
         free(checkPacketPtr)
     }
     
+    func sendServerOpcode(code:UInt8, address:Socket.Address?){
+        let pack = getServerOpcodePacket(code)
+        if let address = address{
+            server.writeData(Data(bytes: pack!, count: MemoryLayout<ServerOpPacket>.size), address: address)
+        }else{
+            for add in delegate!.getAllPlayerAddresses(){
+                server.writeData(Data(bytes: pack!, count: MemoryLayout<ServerOpPacket>.size), address: add)
+            }
+        }
+        free(pack)
+    }
+    
     func receiveData(data:Data, messageInfo:MessageInfo){
         //print(Socket.hostnameAndPort(from:messageInfo.address!))
         data.withUnsafeBytes { (pointer:UnsafePointer<PlayerPacket>) in
@@ -71,6 +83,7 @@ class ServerModelController:ServerDelegate{
 protocol ServerControllerDelegate {
     func updatePlayer(playerControl:PlayerControlPacket, address: Socket.Address)
     func addPlayer(playerInit:PlayerInitPacket, address:Socket.Address)
+    func getAllPlayerAddresses()->[Socket.Address]
 }
 struct PlayerRequest:Codable {
     var keys:[String]?

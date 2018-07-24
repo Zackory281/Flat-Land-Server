@@ -42,8 +42,8 @@ class ShapeTankEntity:GKEntity, Controllable {
     }
     
     func move(_ direction: CGVector) {
-        print("i am told to move \(direction)")
         self.physicsComponent.impulseDirection = direction
+        print("i am told to move \(self.physicsComponent.impulseDirection)")
     }
 }
 

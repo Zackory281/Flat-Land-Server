@@ -24,10 +24,11 @@ class PlayerModelController{
         print("added player: \(playerKey), \(name)")
     }
     
-    func updatePlayer(address:Socket.Address, direction:ControlDirection, fire:Bool, angle:Float32){
+    func updatePlayer(address:Socket.Address, dx:Float, dy:Float, fire:Bool, angle:Float32){
         guard let playerKey = getAddressKey(address: address) else {print("updating player with bad address key"); return;}
         guard let player = players[playerKey] else { print("player with key \(playerKey) doesn't exit, can't update it"); return;}
-        player.move(direction)
+        player.move(CGVector(dx: CGFloat(dx), dy: CGFloat(dy)))
+        print("\(dx), \(dy)")
     }
 }
 
@@ -45,7 +46,7 @@ class Player{
         self.controllable = controllable
     }
     
-    func move(_ direction:ControlDirection) -> Void {
+    func move(_ unit:CGVector) -> Void {
         guard let controllable = self.controllable else {
             print("contorllable doesn't exist, can't control it");
             return;
@@ -54,18 +55,7 @@ class Player{
             print("contorllable can't be moved");
             return;
         }
-        switch direction {
-        case DOWN:
-            move(CGVector(dx: 0, dy: -20))
-        case UP:
-            move(CGVector(dx: 0, dy: 20))
-        case RIGHT:
-            print("going RIGHT")
-        case LEFT:
-            print("going RIGHT")
-        default:
-            print("wht?")
-        }
+        move(unit * 200)
     }
 }
 
