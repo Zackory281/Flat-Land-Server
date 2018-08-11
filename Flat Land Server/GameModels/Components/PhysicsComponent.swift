@@ -14,7 +14,7 @@ class PhysicsComponent: GKComponent {
     var spriteNode:SKNode?{
         return entity?.component(ofType: SpriteComponent.self)?.spriteNode
     }
-    var impulseDirection:CGVector = CGVector.zero
+    var forceDirection:CGVector = CGVector.zero
     override init() {
         physicsBody = SKPhysicsBody(texture: SKTexture(image:#imageLiteral(resourceName: "triangle")), size: CGSize(width: 30, height: 30))
         super.init()
@@ -30,9 +30,10 @@ class PhysicsComponent: GKComponent {
     }
     init(tank:TankEntity) {
         physicsBody = SKPhysicsBody(circleOfRadius: tank.size.width/2)
-        physicsBody.mass = 100
+        physicsBody.mass = 1
         //physicsBody.friction = 1.5
         physicsBody.isDynamic = true
+		physicsBody.allowsRotation = false
         super.init()
         setCategory(category: tank.physicsBodyCategory)
     }
@@ -56,9 +57,12 @@ class PhysicsComponent: GKComponent {
         if spriteNode != nil, spriteNode?.physicsBody == nil{
             spriteNode!.physicsBody = self.physicsBody
         }
-        
-        physicsBody.applyImpulse(impulseDirection)
+        physicsBody.applyForce(forceDirection+frictionForce)
     }
+	var frictionCoef:CGFloat = 2
+	var frictionForce:CGVector{
+		return self.physicsBody.velocity * -frictionCoef
+	}
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

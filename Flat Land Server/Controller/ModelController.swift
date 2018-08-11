@@ -36,7 +36,7 @@ class ArenaModelController:ServerControllerDelegate, PlayerModelControllerDelega
     
     //PlayerModelControllerDelegate
     func getNewPlayerEntity() -> Controllable {
-        return arenaModel.addEntity()
+        return arenaModel.addControllableEntity()
     }
     
     init?(size:CGSize)throws{

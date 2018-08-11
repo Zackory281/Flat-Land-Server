@@ -27,6 +27,7 @@ class ArenaViewController: NSViewController {
             
             view.showsFPS = true
             view.showsNodeCount = true
+			//view.showsPhysics = true
         }
     }
 }

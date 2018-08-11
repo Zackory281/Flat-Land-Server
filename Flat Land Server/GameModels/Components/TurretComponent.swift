@@ -13,26 +13,28 @@ class TurretComponent: GKComponent {
     
     var firePeriod:TimeInterval = 1.5
     var timeSinceLastFire:TimeInterval = 0
-    
-    var turretRotation:CGFloat{
-        return entity?.component(ofType: SpriteComponent.self)?.spriteNode.zRotation ?? 0
-    }
+	
     var turretRange:Float = 700
-    var bulletSpeed:CGFloat = 200
+    var bulletSpeed:CGFloat = 400
     var bulletSize:CGSize = CGSize(width: 20, height: 20)
+	var tank:TankEntity
     
-    init(turret:TurretDelegate?, map:MapComponentDelegate?) {
+	init(tank:TankEntity, turretDelegate:TurretDelegate?, map:MapComponentDelegate?) {
+		self.turretDelegate = turretDelegate
+		self.map = map
+		self.tank = tank
         super.init()
-        self.turret = turret
-        self.map = map
     }
     override func update(deltaTime seconds: TimeInterval) {
         timeSinceLastFire += seconds
         while timeSinceLastFire > firePeriod{
-            guard let position = position, let target = map?.getAim(from: toVector_2f(position), maxDistance: turretRange)?.closestEntity else {return}
-            let diff = target.building.position - position
-            turret?.fire(bullet:getBullet(velocity: CGVector.normalize(vector: diff)*bulletSpeed))
-            timeSinceLastFire = 0
+			guard let turretDelegate = turretDelegate else {print("no turret delegate"); return}
+			for turret in tank.turrets{
+				let node = turret.node!
+				let scene = node.scene!
+				turretDelegate.fire(bullet:getBullet(angle: turret.rotation + tank.rotation, position:scene.convert(node.position, from: tank.tankNode!)))
+				timeSinceLastFire = 0
+			}
         }
     }
     func getBullet()->Bullet{
@@ -41,13 +43,13 @@ class TurretComponent: GKComponent {
     func getBullet(velocity:CGVector) -> Bullet{
         return Bullet(texture: nil, start: position ?? CGPoint.zero, velocity: velocity, size: bulletSize, from:entity)
     }
-    func getBullet(angle:CGFloat) -> Bullet{
-        return Bullet(texture: nil, start: position ?? CGPoint.zero, speed:bulletSpeed, rotation:angle, size: bulletSize, from:entity)
+	func getBullet(angle:CGFloat, position:CGPoint) -> Bullet{
+        return Bullet(texture: nil, start: position, speed:bulletSpeed, rotation:angle, size: bulletSize, from:entity)
     }
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     var position:CGPoint?{ return self.entity?.component(ofType: SpriteComponent.self)?.spriteNode.position}
-    var turret:TurretDelegate?
+    var turretDelegate:TurretDelegate?
     var map:MapComponentDelegate?
 }

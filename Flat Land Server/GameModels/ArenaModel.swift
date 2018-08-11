@@ -16,8 +16,6 @@ class ArenaModel: NSObject, SKSceneDelegate, ArenaDelegate, EntitManagerDelegate
             tank.direction = direction
         }
     }
-    
-    
     var delegate:ArenaDelegate?
     let scene:ArenaScene!
     var lastTime:TimeInterval?
@@ -53,6 +51,7 @@ class ArenaModel: NSObject, SKSceneDelegate, ArenaDelegate, EntitManagerDelegate
         initiateDebugEntities()
         initiateButtons()
         initiateBuildings()
+		scene.dummy = self.addControllableEntity()
     }
     func addEntity(entity:GKEntity){
         componentManager.addEntity(entity: entity)
@@ -145,8 +144,8 @@ extension ArenaModel{
     }
 }
 extension ArenaModel{//ModelController extension
-    func addEntity() -> Controllable {
-        let entity = ShapeTankEntity(type: .Circle,position:CGPoint.init(x: 100, y: 100), scene:self.sceneManager, turretDelegate:turretManager, map:self.mapManager, arena:self)
+    func addControllableEntity() -> Controllable {
+        let entity = ShapeTankEntity(type: .Circle,position:CGPoint.init(x: 100, y: 120), scene:self.sceneManager, turretDelegate:turretManager, map:self.mapManager, arena:self)
         self.addEntity(entity: entity)
         return entity
     }

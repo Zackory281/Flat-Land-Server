@@ -12,6 +12,7 @@ import GameplayKit
 class SpriteComponent:GKComponent{
     var spriteNode:SKNode
     var healthBar:SKShapeNode?
+	var tank:TankEntity?
     init(polygon:EntityType, scene:SceneComponentDelegate?=nil) {
         spriteNode = SKSpriteNode(texture: textures[polygon]!)
         spriteNode.xScale = 1/6
@@ -25,19 +26,23 @@ class SpriteComponent:GKComponent{
         spriteNode.fillColor = NSColor(red:0.00, green:0.69, blue:0.88, alpha:1.0)
         spriteNode.strokeColor = NSColor(red:0.32, green:0.32, blue:0.32, alpha:1.0)
         spriteNode.lineWidth = 3
-        let turret = tank.turret
+        let turret = tank.turrets
         for turretN in turret{
             let turretNode = SKShapeNode(rect: turretN.getTurretRect(scale:tank.size.width))
             turretNode.fillColor = NSColor(red:0.60, green:0.60, blue:0.60, alpha:1.0)
             turretNode.strokeColor = NSColor(red:0.45, green:0.45, blue:0.45, alpha:1.0)
             turretNode.lineWidth = 3
-            turretNode.zPosition = -1
-            let action = SKAction.repeatForever(SKAction.sequence([SKAction.wait(forDuration: 0.8), SKAction.scale(to: 2, duration: 0.1), SKAction.scale(to: 1.0, duration: 0.1)]))
-            //turretNode.run(action)
+            turretNode.zPosition = -10
+			turretNode.zRotation = turretN.rotation
+			turretNode.position = turretN.getTurretPosition(scale: tank.size.width)
+            //let action = SKAction.repeatForever(SKAction.sequence([SKAction.wait(forDuration: 0.8), SKAction.scale(to: 2, duration: 0.1), SKAction.scale(to: 1.0, duration: 0.1)]))
+            turretN.node = turretNode
             spriteNode.addChild(turretNode)
         }
+	  	tank.tankNode = spriteNode
         self.spriteNode = spriteNode
         self.scene = scene
+		self.tank = tank
         super.init()
     }
     init(_ x:Int,_ y:Int,_ width:Int,_ height:Int,label text:String, scene:SceneComponentDelegate?=nil) {
@@ -108,6 +113,9 @@ class SpriteComponent:GKComponent{
                 scene!.addNode(node: healthBar!)
             }
         }
+		if let tank = self.tank{
+			spriteNode.zRotation = tank.rotation
+		}
     }
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
