@@ -11,10 +11,11 @@ import GameplayKit
 
 class ArenaScene: SKScene {
     var clickDelegate:ArenaSceneTouchDelegate?
-	var dummy:Controllable?
+	weak var dummy:Controllable?
 	var directions:[Direction:Bool] = [.UP:false,.RIGHT:false,.DOWN:false,.LEFT:false]
     override func mouseDown(with event: NSEvent) {
         clickDelegate?.clicked(point: event.location(in: self))
+		dummy?.fire!(true)
     }
 	func updateDirection(){
 		guard let dummy = dummy else {
@@ -24,12 +25,12 @@ class ArenaScene: SKScene {
 		for direction in directions where direction.value{
 			velocity = velocity + DirectionForImpulse[direction.key]!
 		}
-		dummy.move!(velocity)
+		dummy.move?(velocity)
 	}
 	
 	override func mouseMoved(with event: NSEvent) {
 		//print(event.location(in: self))
-		dummy!.rotateTo!(event.location(in: self))
+		dummy?.rotateTo!(event.location(in: self))
 	}
     override func keyUp(with event: NSEvent) {
 		guard let direction = CharForDirection[event.characters!]else{return}
@@ -37,14 +38,24 @@ class ArenaScene: SKScene {
 		updateDirection()
     }
 	override func keyDown(with event: NSEvent) {
+		if event.characters == "p", dummy == nil{
+			dummy = clickDelegate!.getControllable()
+		}
 		guard let direction = CharForDirection[event.characters!]else{return}
 		directions[direction] = true
 		updateDirection()
 	}
 }
+
+extension ArenaModel{
+	func getControllable()->Controllable{
+		return getControllableEntity()
+	}
+}
 protocol ArenaSceneTouchDelegate {
     func clicked(point:CGPoint) -> Void
     func makeAllTankGo(direction:Direction?)
+	func getControllable()->Controllable
 }
 let CharForDirection:[String:Direction] = [
 	"w":.UP,

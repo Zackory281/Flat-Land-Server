@@ -12,7 +12,7 @@ import GameplayKit
 class ShapeTankEntity:GKEntity, Controllable {
     var tank:TankEntity
     var direction:Direction?
-	var rotatePoint:CGPoint?
+	var rotatePoint:CGPoint = .zero
     init(type:EntityType, position: CGPoint, scene: SceneComponentDelegate?, turretDelegate:TurretDelegate, map:MapComponentDelegate, arena:ArenaDelegate) {
         self.turretDelegate = turretDelegate
         self.arena = arena
@@ -42,9 +42,14 @@ class ShapeTankEntity:GKEntity, Controllable {
         return entity.component(ofType: HealthComponent.self)?.isDead() ?? true
     }
 	
-	
+	override func update(deltaTime seconds: TimeInterval) {
+		self.tank.rotation = CGPoint.getAngle(rotatePoint-tank.tankNode!.position)
+	}
 	func rotateTo(_ point: CGPoint) {
-		self.tank.rotation = CGPoint.getAngle(point-tank.tankNode!.position)
+		self.rotatePoint = point
+	}
+	func fire(_ fire:Bool){
+		self.turretComponent.fireQueue+=1
 	}
     func move(_ direction: CGVector) {
         self.physicsComponent.forceDirection = direction

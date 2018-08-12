@@ -58,6 +58,11 @@ class ArenaModel: NSObject, SKSceneDelegate, ArenaDelegate, EntitManagerDelegate
         mapManager.addEntity(entity: entity)
         agentManager.addEntity(entity: entity)
     }
+	func getControllableEntity() -> Controllable {
+		let entity = ShapeTankEntity(type: .Circle,position:CGPoint.init(x: 100, y: 120), scene:self.sceneManager, turretDelegate:turretManager, map:self.mapManager, arena:self)
+		self.addEntity(entity: entity)
+		return entity
+	}
     func removeEntity(entity:GKEntity) {
         componentManager.delete(entity: entity)
         mapManager.removeEntity(entity: entity)
@@ -145,8 +150,6 @@ extension ArenaModel{
 }
 extension ArenaModel{//ModelController extension
     func addControllableEntity() -> Controllable {
-        let entity = ShapeTankEntity(type: .Circle,position:CGPoint.init(x: 100, y: 120), scene:self.sceneManager, turretDelegate:turretManager, map:self.mapManager, arena:self)
-        self.addEntity(entity: entity)
-        return entity
+        return getControllableEntity()
     }
 }
