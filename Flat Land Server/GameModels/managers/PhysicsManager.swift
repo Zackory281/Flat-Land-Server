@@ -20,6 +20,7 @@ class PhysicsManager: NSObject, SKPhysicsContactDelegate {
         physicsWorld.contactDelegate = self
     }
     func didBegin(_ contact: SKPhysicsContact) {
+		print("begin")
         var entityBody:SKPhysicsBody?
         var bulletBody:SKPhysicsBody?
         if contact.bodyA.categoryBitMask != BulletCate, contact.bodyB.categoryBitMask == BulletCate {
@@ -29,9 +30,20 @@ class PhysicsManager: NSObject, SKPhysicsContactDelegate {
         }else { return }
         guard let tankEntity = delegate.getEntityOfBody(body: entityBody!, type: BuildingEntity.self) else {return}
         guard let bulletEntity = delegate.getEntityOfBody(body: bulletBody!, type: BulletEntity.self) else {return}
-        bulletEntity.hitAction(bulletEntity, tankEntity)
+        bulletEntity.hitEntity.insert(tankEntity)
     }
     func didEnd(_ contact: SKPhysicsContact) {
+		print("didEnd")
+		var entityBody:SKPhysicsBody?
+		var bulletBody:SKPhysicsBody?
+		if contact.bodyA.categoryBitMask != BulletCate, contact.bodyB.categoryBitMask == BulletCate {
+			entityBody = contact.bodyA; bulletBody = contact.bodyB;
+		}else if contact.bodyB.categoryBitMask != BulletCate, contact.bodyA.categoryBitMask == BulletCate {
+			entityBody = contact.bodyB; bulletBody = contact.bodyA;
+		}else { return }
+		guard let tankEntity = delegate.getEntityOfBody(body: entityBody!, type: BuildingEntity.self) else {return}
+		guard let bulletEntity = delegate.getEntityOfBody(body: bulletBody!, type: BulletEntity.self) else {return}
+		bulletEntity.hitEntity.remove(tankEntity)
     }
 }
 

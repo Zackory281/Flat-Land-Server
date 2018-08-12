@@ -10,6 +10,7 @@ import Foundation
 import GameplayKit
 
 class BulletEntity: GKEntity {
+	var hitEntity = Set<GKEntity>()
     var hitAction = {(_ bullet:BulletEntity, _ target:GKEntity)->() in
         guard let healthComp = target.component(ofType: HealthComponent.self), target != bullet.bullet.from else { return }
         healthComp.health -= bullet.bullet.damage
@@ -31,6 +32,11 @@ class BulletEntity: GKEntity {
         spriteComponent.spriteNode.position = bullet.startPosition
         
     }
+	override func update(deltaTime seconds: TimeInterval) {
+		hitEntity.forEach { [weak self] entity in
+			hitAction(self!, entity)
+		}
+	}
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

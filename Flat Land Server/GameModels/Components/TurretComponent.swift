@@ -13,6 +13,7 @@ class TurretComponent: GKComponent {
     
     var firePeriod:TimeInterval = 1.5
     var timeSinceLastFire:TimeInterval = 0
+	var fireQueue:UInt8 = 0
 	
     var turretRange:Float = 700
     var bulletSpeed:CGFloat = 400
@@ -28,14 +29,24 @@ class TurretComponent: GKComponent {
     override func update(deltaTime seconds: TimeInterval) {
         timeSinceLastFire += seconds
         while timeSinceLastFire > firePeriod{
-			guard let turretDelegate = turretDelegate else {print("no turret delegate"); return}
+//			guard let turretDelegate = turretDelegate else {print("no turret delegate"); return}
+//			for turret in tank.turrets{
+//				let node = turret.node!
+//				let scene = node.scene!
+//				turretDelegate.fire(bullet:getBullet(angle: turret.rotation + tank.rotation, position:scene.convert(node.position, from: tank.tankNode!)))
+//
+//			}
+			timeSinceLastFire = 0
+        }
+		while fireQueue != 0 {
 			for turret in tank.turrets{
 				let node = turret.node!
 				let scene = node.scene!
-				turretDelegate.fire(bullet:getBullet(angle: turret.rotation + tank.rotation, position:scene.convert(node.position, from: tank.tankNode!)))
+				turretDelegate?.fire(bullet:getBullet(angle: turret.rotation + tank.rotation, position:scene.convert(node.position, from: tank.tankNode!)))
 				timeSinceLastFire = 0
 			}
-        }
+			fireQueue-=1
+		}
     }
     func getBullet()->Bullet{
         return getBullet(velocity:CGVector(dx: 10, dy: 10))

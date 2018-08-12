@@ -19,7 +19,8 @@ class ComponentManager{
         GKComponentSystem(componentClass: HealthComponent.self),
         GKComponentSystem(componentClass: AgentComponent.self),
         GKComponentSystem(componentClass: TurretComponent.self),
-        GKComponentSystem(componentClass: DisappearComponent.self),]
+        GKComponentSystem(componentClass: DisappearComponent.self),
+		GKComponentSystem(componentClass: PhysicsComponent.self),]
     init(entities:SetPointer<GKEntity>) {
         self.entities = entities
     }
@@ -44,7 +45,6 @@ class ComponentManager{
         }
         perEntity(){
             $0.update(deltaTime: delta)
-            
         }
     }
     func delete(entity:GKEntity) -> Void {toRemove.insert(entity)}
