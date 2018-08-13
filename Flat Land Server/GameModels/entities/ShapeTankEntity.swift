@@ -11,17 +11,21 @@ import GameplayKit
 
 class ShapeTankEntity:GKEntity, Controllable {
     var tank:Tank
+	var turrets:[TurretEntity] = []
     var direction:Direction?
 	var rotatePoint:CGPoint = .zero
-    init(type:EntityType, position: CGPoint, scene: SceneComponentDelegate?, turretDelegate:TurretDelegate, map:MapComponentDelegate, arena:ArenaDelegate) {
+	var node:SKNode?
+	init(tank:Tank=getTank(type: .twin), position: CGPoint, scene: SceneComponentDelegate?, turretDelegate:TurretDelegate, map:MapComponentDelegate, arena:ArenaDelegate) {
         self.turretDelegate = turretDelegate
         self.arena = arena
-        self.tank = getTank(type: .twin)
+        self.tank = tank//getTank(type: .twin)
+		self.turrets.append(contentsOf: tank.turrets.map({ turret in
+			return TurretEntity(turret: turret)
+		}))
         super.init()
 		self.addComponent(TurretComponent(tank:tank,turretDelegate: turretDelegate, map: map))
-        self.addComponent(SpriteComponent.init(tank: tank, scene: scene))
+        self.addComponent(SpriteComponent(tankEntity: self, scene: scene))
         self.addComponent(PhysicsComponent(tank:self.tank))
-        //self.addComponent(AgentComponent())
         self.addComponent(HealthComponent())
         self.addComponent(DisappearComponent(function: disappearingFunction, arena: arena))
 		self.spriteComponent.spriteNode.position = position
@@ -52,6 +56,24 @@ class ShapeTankEntity:GKEntity, Controllable {
     func move(_ direction: CGVector) {
         self.physicsComponent.forceDirection = direction
     }
+}
+
+class TurretEntity{
+	var turret:Turret
+	var node:SKNode?
+	var tank:Tank
+	init(turret:Turret) {
+		self.turret = turret
+	}
+	func getTurretRect() -> CGRect{
+		let width = turret.turretSize.width * tank.size
+		let height = turret.turretSize.height * tank.size
+		return CGRect(x: 0, y: -height/2.0, width: width, height: height)
+	}
+	
+	func getTurretPosition() -> CGPoint{
+		return turret.position * tank.size
+	}
 }
 
 @objc protocol Controllable {

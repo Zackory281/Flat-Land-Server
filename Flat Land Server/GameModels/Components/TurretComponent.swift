@@ -44,7 +44,7 @@ class TurretComponent: GKComponent {
 				let scene = node.scene!
 				let speed = turret.bullet.speed
 				let rotation = tank!.rotation
-				let bulletFire = BulletFire.init(shooter: entity!, position: scene.convert(node.position, from: tank!.tankNode!), velocity: CGVector(dx: speed * cos(rotation), dy: speed * sin(rotation)))
+				let bulletFire = BulletFire.init(shooter: entity!,turret: turret, position: scene.convert(node.position, from: tank!.tankNode!), velocity: CGVector(dx: speed * cos(rotation), dy: speed * sin(rotation)))
 				turretDelegate?.fire(bullet:turret.bullet, bulletFire: bulletFire)
 				timeSinceLastFire = 0
 			}

@@ -36,7 +36,7 @@ class ShapeEntity:GKEntity{
             ShapeMovingState(entity: self),
             ShapeReachAgentState(entity: self),
             ])
-        addComponent(SpriteComponent(tank: tankEntity, scene:scene))
+        //addComponent(SpriteComponent(tank: tankEntity, scene:scene))
         addComponent(AgentComponent())
     }
     convenience init(scene:SceneComponentDelegate?=nil){
