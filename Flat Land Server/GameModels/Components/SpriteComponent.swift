@@ -12,7 +12,7 @@ import GameplayKit
 class SpriteComponent:GKComponent{
     var spriteNode:SKNode
     var healthBar:SKShapeNode?
-	var tank:Tank?
+	var tank:GKEntity?
     init(polygon:EntityType, scene:SceneComponentDelegate?=nil) {
         spriteNode = SKSpriteNode(texture: textures[polygon]!)
         spriteNode.xScale = 1/6
@@ -20,28 +20,28 @@ class SpriteComponent:GKComponent{
         self.scene = scene
         super.init()
     }
-    init(tank:Tank, scene:SceneComponentDelegate?=nil) {
-        let spriteNode = SKShapeNode(circleOfRadius: tank.size/2)
+    init(tankEntity:ShapeTankEntity, scene:SceneComponentDelegate?=nil) {
+        let spriteNode = SKShapeNode(circleOfRadius: tankEntity.tank.size/2)
         spriteNode.fillColor = NSColor(red:0.00, green:0.69, blue:0.88, alpha:1.0)
         spriteNode.strokeColor = NSColor(red:0.32, green:0.32, blue:0.32, alpha:1.0)
         spriteNode.lineWidth = 3
-        let turret = tank.turrets
-        for turretN in turret{
-            let turretNode = SKShapeNode(rect: turretN.getTurretRect())
+        for turretEntity in tankEntity.turrets{
+			let turret = turretEntity.turret
+            let turretNode = SKShapeNode(rect: turretEntity.getTurretRect())
             turretNode.fillColor = NSColor(red:0.60, green:0.60, blue:0.60, alpha:1.0)
             turretNode.strokeColor = NSColor(red:0.45, green:0.45, blue:0.45, alpha:1.0)
             turretNode.lineWidth = 3
             turretNode.zPosition = -10
-			turretNode.zRotation = turretN.rotation
-			turretNode.position = turretN.getTurretPosition()
+			turretNode.zRotation = turret.rotation
+			turretNode.position = turretEntity.getTurretPosition()
             //let action = SKAction.repeatForever(SKAction.sequence([SKAction.wait(forDuration: 0.8), SKAction.scale(to: 2, duration: 0.1), SKAction.scale(to: 1.0, duration: 0.1)]))
-            turretN.node = turretNode
+            turretEntity.node = turretNode
             spriteNode.addChild(turretNode)
         }
-	  	tank.tankNode = spriteNode
+	  	tankEntity.node = spriteNode
         self.spriteNode = spriteNode
         self.scene = scene
-		self.tank = tank
+		self.tank = tankEntity
         super.init()
     }
     init(_ x:Int,_ y:Int,_ width:Int,_ height:Int,label text:String, scene:SceneComponentDelegate?=nil) {

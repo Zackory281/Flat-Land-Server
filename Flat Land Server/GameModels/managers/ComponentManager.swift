@@ -20,7 +20,7 @@ class ComponentManager{
         GKComponentSystem(componentClass: AgentComponent.self),
         GKComponentSystem(componentClass: TurretComponent.self),
         GKComponentSystem(componentClass: DisappearComponent.self),
-		GKComponentSystem(componentClass: PhysicsComponent.self),]
+        GKComponentSystem(componentClass: PhysicsComponent.self),]
     init(entities:SetPointer<GKEntity>) {
         self.entities = entities
     }

@@ -53,7 +53,6 @@ class ArenaModel: NSObject, SKSceneDelegate, ArenaDelegate, EntitManagerDelegate
         initiateDebugEntities()
         initiateButtons()
         initiateBuildings()
-		scene.dummy = self.addControllableEntity()
 		//debug end
 		foodController = FoodController(arenaDelegate: self)
     }
@@ -71,7 +70,7 @@ class ArenaModel: NSObject, SKSceneDelegate, ArenaDelegate, EntitManagerDelegate
         //agentManager.addEntity(entity: entity)
     }
 	func getControllableEntity() -> Controllable {
-		let entity = ShapeTankEntity(type: .Circle,position:CGPoint.init(x: 100, y: 120), scene:self.sceneManager, turretDelegate:turretManager, map:self.mapManager, arena:self)
+		let entity = ShapeTankEntity(tank:getTank(type: .triplet),position:CGPoint.init(x: 100, y: 120), scene:self.sceneManager, turretDelegate:turretManager, map:self.mapManager, arena:self)
 		self.addEntity(entity: entity)
 		return entity
 	}
@@ -91,7 +90,7 @@ class ArenaModel: NSObject, SKSceneDelegate, ArenaDelegate, EntitManagerDelegate
     func doAction(action:ArenaAction, location:CGPoint?){
         switch action {
         case ArenaAction.DropEntity:
-            let shapeEntity = ShapeTankEntity(type: .Circle,position:location!, scene:self.sceneManager, turretDelegate:turretManager, map:self.mapManager, arena:self)
+            let shapeEntity = ShapeTankEntity(position:location!, scene:self.sceneManager, turretDelegate:turretManager, map:self.mapManager, arena:self)
             self.addEntity(entity: shapeEntity)
         case ArenaAction.AddBui:
             let buildingEntity = BuildingEntity(building: .getBuilding(location!.x, location!.y), scene: sceneManager, arena:self)
@@ -147,7 +146,7 @@ enum ArenaAction:String{
 }
 extension ArenaModel{
     func initiateDebugEntities(){
-        self.addEntity(entity: ShapeTankEntity(type: .Circle,position:CGPoint.init(x: 100, y: 100), scene:self.sceneManager, turretDelegate:turretManager, map:self.mapManager, arena:self))
+        self.addEntity(entity: ShapeTankEntity(position:CGPoint.init(x: 100, y: 100), scene:self.sceneManager, turretDelegate:turretManager, map:self.mapManager, arena:self))
     }
     func initiateSceneComp(){
     }
