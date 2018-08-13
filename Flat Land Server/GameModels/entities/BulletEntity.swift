@@ -11,8 +11,12 @@ import GameplayKit
 
 class BulletEntity: GKEntity {
 	var hitEntity = Set<GKEntity>()
+	weak var from:GKEntity?
+	lazy var radius:CGFloat = {
+		return (from! as! ShapeTankEntity).tank.size * bullet.radius
+	}()
     var hitAction = {(_ bullet:BulletEntity, _ target:GKEntity)->() in
-        guard let healthComp = target.component(ofType: HealthComponent.self), target != bullet.bullet.from else { return }
+        guard let healthComp = target.component(ofType: HealthComponent.self), target != bullet.from else { return }
         healthComp.health -= bullet.bullet.damage
         bullet.healthComponent.health -= bullet.bullet.damage
     }
@@ -20,17 +24,21 @@ class BulletEntity: GKEntity {
         let disappearComponent:DisappearComponent = entity.component(ofType: DisappearComponent.self)!
         return entity.component(ofType: HealthComponent.self)!.isDead() || disappearComponent.passedTime > disappearComponent.timeOut
     }
-    init(bullet:Bullet, scene:SceneComponentDelegate, arena:ArenaDelegate) {
+	init(bullet:Bullet, scene:SceneComponentDelegate, arena:ArenaDelegate, bulletFire:BulletFire) {
         super.init()
         self.scene = scene
         self.arena = arena
         self.bullet = bullet
+		
+		self.from = bulletFire.shooter
+		
         self.addComponent(DisappearComponent(function:disapearFunction, arena: arena))
-        self.addComponent(SpriteComponent(bullet: bullet, scene:scene))
-        self.addComponent(PhysicsComponent(bullet:bullet,category:.Bullet))
+        self.addComponent(SpriteComponent(bullet: self, scene:scene))
+        self.addComponent(PhysicsComponent(bullet:self,category:.Bullet))
         self.addComponent(HealthComponent())
-        spriteComponent.spriteNode.position = bullet.startPosition
-        
+		
+		spriteComponent.spriteNode.position = bulletFire.position
+		physicsComponent.physicsBody.velocity = bulletFire.velocity
     }
 	override func update(deltaTime seconds: TimeInterval) {
 		hitEntity.forEach { [weak self] entity in
@@ -47,26 +55,4 @@ class BulletEntity: GKEntity {
     var disappearComponent:DisappearComponent{ return self.component(ofType: DisappearComponent.self)!}
     var physicsComponent:PhysicsComponent{ return self.component(ofType: PhysicsComponent.self)!}
     var healthComponent:HealthComponent{ return self.component(ofType: HealthComponent.self)!}
-}
-
-struct Bullet {
-    let startPosition:CGPoint
-    let startVelocity:CGVector
-    let size:CGSize
-    let timeout:Double = 1.0
-    let damage:CGFloat = 0.2
-    
-    weak var from:GKEntity?
-    init(texture:SKTexture?, start:CGPoint, velocity:CGVector, size:CGSize, from:GKEntity?=nil) {
-        self.startPosition = start
-        self.startVelocity = velocity
-        self.size = size
-        self.from = from
-    }
-    init(texture:SKTexture?, start:CGPoint, speed:CGFloat, rotation:CGFloat, size:CGSize, from:GKEntity?=nil) {
-        self.startPosition = start
-        self.startVelocity = CGVector(dx: speed * cos(rotation), dy: speed * sin(rotation))
-        self.size = size
-        self.from = from
-    }
 }

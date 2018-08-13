@@ -12,7 +12,7 @@ import GameplayKit
 class SpriteComponent:GKComponent{
     var spriteNode:SKNode
     var healthBar:SKShapeNode?
-	var tank:TankEntity?
+	var tank:Tank?
     init(polygon:EntityType, scene:SceneComponentDelegate?=nil) {
         spriteNode = SKSpriteNode(texture: textures[polygon]!)
         spriteNode.xScale = 1/6
@@ -20,21 +20,20 @@ class SpriteComponent:GKComponent{
         self.scene = scene
         super.init()
     }
-    init(tank:TankEntity, scene:SceneComponentDelegate?=nil) {
-        let spriteNode = SKShapeNode(circleOfRadius: tank.size.width/2)
-        spriteNode.position = tank.startingPosition
+    init(tank:Tank, scene:SceneComponentDelegate?=nil) {
+        let spriteNode = SKShapeNode(circleOfRadius: tank.size/2)
         spriteNode.fillColor = NSColor(red:0.00, green:0.69, blue:0.88, alpha:1.0)
         spriteNode.strokeColor = NSColor(red:0.32, green:0.32, blue:0.32, alpha:1.0)
         spriteNode.lineWidth = 3
         let turret = tank.turrets
         for turretN in turret{
-            let turretNode = SKShapeNode(rect: turretN.getTurretRect(scale:tank.size.width))
+            let turretNode = SKShapeNode(rect: turretN.getTurretRect())
             turretNode.fillColor = NSColor(red:0.60, green:0.60, blue:0.60, alpha:1.0)
             turretNode.strokeColor = NSColor(red:0.45, green:0.45, blue:0.45, alpha:1.0)
             turretNode.lineWidth = 3
             turretNode.zPosition = -10
 			turretNode.zRotation = turretN.rotation
-			turretNode.position = turretN.getTurretPosition(scale: tank.size.width)
+			turretNode.position = turretN.getTurretPosition()
             //let action = SKAction.repeatForever(SKAction.sequence([SKAction.wait(forDuration: 0.8), SKAction.scale(to: 2, duration: 0.1), SKAction.scale(to: 1.0, duration: 0.1)]))
             turretN.node = turretNode
             spriteNode.addChild(turretNode)
@@ -79,15 +78,20 @@ class SpriteComponent:GKComponent{
         (spriteNode as! SKShapeNode).strokeColor = .black
         super.init()
     }
-    init(bullet:Bullet, scene:SceneComponentDelegate?=nil) {
-        let circle = SKShapeNode(circleOfRadius: bullet.size.width/2)
+    init(bullet:BulletEntity, scene:SceneComponentDelegate?=nil) {
+        let circle = SKShapeNode(circleOfRadius: bullet.radius)
         circle.fillColor = NSColor(red:0.93, green:0.38, blue:0.38, alpha:1.0)
         circle.strokeColor = .black
-        circle.lineWidth = bullet.size.width/8
+        circle.lineWidth = bullet.radius/4
         self.spriteNode = circle
         self.scene = scene
         super.init()
     }
+	init(foodEntity:FoodEntity, scene:SceneComponentDelegate) {
+		self.scene = scene
+		self.spriteNode = SKShapeNode(rect: CGRect(x: -15, y: -15, width: 30, height: 30))
+		super.init()
+	}
     var bar:SKShapeNode?
     override func update(deltaTime seconds: TimeInterval) {
         if spriteNode.parent == nil{

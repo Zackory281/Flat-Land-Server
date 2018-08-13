@@ -26,8 +26,8 @@ class ShapeEntity:GKEntity{
     var targetAgent:GKAgent2D?
     var flockAgents:[GKAgent2D]?
     //Actual Entity Stuff
-    var tank:TankEntity
-    init(tankEntity:TankEntity, scene:SceneComponentDelegate?=nil) {
+    var tank:Tank
+    init(tankEntity:Tank, scene:SceneComponentDelegate?=nil) {
         self.tank = tankEntity
         super.init()
         self.scene = scene
@@ -36,11 +36,11 @@ class ShapeEntity:GKEntity{
             ShapeMovingState(entity: self),
             ShapeReachAgentState(entity: self),
             ])
-        addComponent(SpriteComponent(polygon: tankEntity.tankType, scene:scene))
+        addComponent(SpriteComponent(tank: tankEntity, scene:scene))
         addComponent(AgentComponent())
     }
     convenience init(scene:SceneComponentDelegate?=nil){
-        self.init(tankEntity: TankEntity(), scene:scene)
+        self.init(tankEntity: getTank(type: .twin), scene:scene)
     }
     func goHere(target targetAgent:GKAgent2D, agents flockingAgents:[GKAgent2D]=[])
     {

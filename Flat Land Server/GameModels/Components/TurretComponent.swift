@@ -18,9 +18,9 @@ class TurretComponent: GKComponent {
     var turretRange:Float = 700
     var bulletSpeed:CGFloat = 400
     var bulletSize:CGSize = CGSize(width: 20, height: 20)
-	var tank:TankEntity
+	weak var tank:Tank?
     
-	init(tank:TankEntity, turretDelegate:TurretDelegate?, map:MapComponentDelegate?) {
+	init(tank:Tank, turretDelegate:TurretDelegate?, map:MapComponentDelegate?) {
 		self.turretDelegate = turretDelegate
 		self.map = map
 		self.tank = tank
@@ -39,24 +39,27 @@ class TurretComponent: GKComponent {
 			timeSinceLastFire = 0
         }
 		while fireQueue != 0 {
-			for turret in tank.turrets{
+			for turret in tank!.turrets{
 				let node = turret.node!
 				let scene = node.scene!
-				turretDelegate?.fire(bullet:getBullet(angle: turret.rotation + tank.rotation, position:scene.convert(node.position, from: tank.tankNode!)))
+				let speed = turret.bullet.speed
+				let rotation = tank!.rotation
+				let bulletFire = BulletFire.init(shooter: entity!, position: scene.convert(node.position, from: tank!.tankNode!), velocity: CGVector(dx: speed * cos(rotation), dy: speed * sin(rotation)))
+				turretDelegate?.fire(bullet:turret.bullet, bulletFire: bulletFire)
 				timeSinceLastFire = 0
 			}
 			fireQueue-=1
 		}
     }
-    func getBullet()->Bullet{
-        return getBullet(velocity:CGVector(dx: 10, dy: 10))
-    }
-    func getBullet(velocity:CGVector) -> Bullet{
-        return Bullet(texture: nil, start: position ?? CGPoint.zero, velocity: velocity, size: bulletSize, from:entity)
-    }
-	func getBullet(angle:CGFloat, position:CGPoint) -> Bullet{
-        return Bullet(texture: nil, start: position, speed:bulletSpeed, rotation:angle, size: bulletSize, from:entity)
-    }
+//    func getBullet()->Bullet{
+//        return Bullet(texture: nil, velocity: CGVector, size: <#T##CGSize#>)
+//    }
+//    func getBullet(velocity:CGVector) -> Bullet{
+//        return Bullet(texture: nil, start: position ?? CGPoint.zero, velocity: velocity, size: bulletSize, from:entity)
+//    }
+//	func getBullet(angle:CGFloat, position:CGPoint) -> Bullet{
+//        return Bullet(texture: nil, start: position, speed:bulletSpeed, rotation:angle, size: bulletSize, from:entity)
+//    }
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

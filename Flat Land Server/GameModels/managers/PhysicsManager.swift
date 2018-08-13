@@ -20,7 +20,6 @@ class PhysicsManager: NSObject, SKPhysicsContactDelegate {
         physicsWorld.contactDelegate = self
     }
     func didBegin(_ contact: SKPhysicsContact) {
-		print("begin")
         var entityBody:SKPhysicsBody?
         var bulletBody:SKPhysicsBody?
         if contact.bodyA.categoryBitMask != BulletCate, contact.bodyB.categoryBitMask == BulletCate {
@@ -33,7 +32,6 @@ class PhysicsManager: NSObject, SKPhysicsContactDelegate {
         bulletEntity.hitEntity.insert(tankEntity)
     }
     func didEnd(_ contact: SKPhysicsContact) {
-		print("didEnd")
 		var entityBody:SKPhysicsBody?
 		var bulletBody:SKPhysicsBody?
 		if contact.bodyA.categoryBitMask != BulletCate, contact.bodyB.categoryBitMask == BulletCate {

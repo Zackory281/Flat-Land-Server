@@ -19,17 +19,16 @@ class PhysicsComponent: GKComponent {
         physicsBody = SKPhysicsBody(texture: SKTexture(image:#imageLiteral(resourceName: "triangle")), size: CGSize(width: 30, height: 30))
         super.init()
     }
-    init(bullet:Bullet, category:BodyCategory) {
-        physicsBody = SKPhysicsBody(circleOfRadius: bullet.size.width/2)
-        physicsBody.velocity = bullet.startVelocity
+    init(bullet:BulletEntity, category:BodyCategory) {
+        physicsBody = SKPhysicsBody(circleOfRadius: bullet.radius)
         physicsBody.mass = 100
         physicsBody.friction = 0
         physicsBody.isDynamic = true
         super.init()
         setCategory(category: category)
     }
-    init(tank:TankEntity) {
-        physicsBody = SKPhysicsBody(circleOfRadius: tank.size.width/2)
+    init(tank:Tank) {
+        physicsBody = SKPhysicsBody(circleOfRadius: tank.size/2)
         physicsBody.mass = 1
         //physicsBody.friction = 1.5
         physicsBody.isDynamic = true
@@ -46,6 +45,14 @@ class PhysicsComponent: GKComponent {
         super.init()
         setCategory(category: .Building)
     }
+	init(foodType:FoodType){
+		physicsBody = SKPhysicsBody(circleOfRadius: 10)
+		physicsBody.restitution = 0.3
+		physicsBody.isDynamic = true
+		physicsBody.mass = 1
+		super.init()
+		setCategory(category: .Entity)
+	}
     func setCategory(category:BodyCategory) -> Void {
         let masks = categoryKey[category]!
         physicsBody.categoryBitMask = masks.cate
@@ -74,6 +81,9 @@ let categoryKey:[BodyCategory:(cate:UInt32, coll:UInt32,cont:UInt32)] = [
     .Entity  :  (cate:UInt32.shift(0),
                  coll:EntityCate | BuildingCate,
                  cont:UInt32(0)),
+	.Food  :  (cate:UInt32.shift(0),
+				 coll:EntityCate | BuildingCate,
+				 cont:UInt32(0)),
     .Bullet  :  (cate:UInt32.shift(1),
                  coll:UInt32(0),
                  cont:BuildingCate),
@@ -89,5 +99,6 @@ enum BodyCategory {
     case Nothing
     case Entity
     case Bullet
+	case Food
     case Building
 }

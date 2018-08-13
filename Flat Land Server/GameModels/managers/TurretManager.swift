@@ -10,8 +10,8 @@ import Foundation
 import GameplayKit
 
 class TurretManager:TurretDelegate{
-    func fire(bullet:Bullet) {
-        turretManagerDelegate.addBullet(bullet: bullet)
+	func fire(bullet:Bullet, bulletFire:BulletFire) {
+		turretManagerDelegate.addBullet(bullet: bullet, bulletFire:bulletFire)
     }
     var turretManagerDelegate:TurretManagerDelegate
     init(turretManagerDelegate:TurretManagerDelegate) {
@@ -19,8 +19,8 @@ class TurretManager:TurretDelegate{
     }
 }
 protocol TurretDelegate {
-    func fire(bullet:Bullet)
+    func fire(bullet:Bullet, bulletFire:BulletFire)
 }
 protocol TurretManagerDelegate {
-    func addBullet(bullet:Bullet)
+	func addBullet(bullet:Bullet, bulletFire:BulletFire)
 }

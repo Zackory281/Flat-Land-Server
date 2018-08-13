@@ -28,7 +28,7 @@ class PlayerModelController{
         guard let playerKey = getAddressKey(address: address) else {print("updating player with bad address key"); return;}
         guard let player = players[playerKey] else { print("player with key \(playerKey) doesn't exit, can't update it"); return;}
         player.move(CGVector(dx: CGFloat(dx), dy: CGFloat(dy)))
-        print("\(dx), \(dy)")
+        //print("\(dx), \(dy)")
     }
 }
 

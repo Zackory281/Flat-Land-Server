@@ -19,6 +19,8 @@ class ArenaModel: NSObject, SKSceneDelegate, ArenaDelegate, EntitManagerDelegate
     var delegate:ArenaDelegate?
     let scene:ArenaScene!
     var lastTime:TimeInterval?
+	//controllers
+	var foodController:FoodController!
     //class managers
     var componentManager:ComponentManager!
     var sceneManager:SceneManager!
@@ -47,16 +49,26 @@ class ArenaModel: NSObject, SKSceneDelegate, ArenaDelegate, EntitManagerDelegate
         
         self.initiateSceneComp()
         scene.delegate = self
-        
+        //debug start
         initiateDebugEntities()
         initiateButtons()
         initiateBuildings()
 		scene.dummy = self.addControllableEntity()
+		//debug end
+		foodController = FoodController(arenaDelegate: self)
     }
+	func addEntityOfType<T:GKEntity>(_ type:T.Type){
+		switch type {
+		case is FoodEntity.Type:
+			addEntity(entity: FoodEntity(sceneDelegate: sceneManager, arenaDelegate: self,type:.Triangle, position:CGPoint(x: 400, y: 400)))
+		default:
+			print("\(type) add entity not implemented")
+		}
+	}
     func addEntity(entity:GKEntity){
         componentManager.addEntity(entity: entity)
         mapManager.addEntity(entity: entity)
-        agentManager.addEntity(entity: entity)
+        //agentManager.addEntity(entity: entity)
     }
 	func getControllableEntity() -> Controllable {
 		let entity = ShapeTankEntity(type: .Circle,position:CGPoint.init(x: 100, y: 120), scene:self.sceneManager, turretDelegate:turretManager, map:self.mapManager, arena:self)
@@ -66,15 +78,15 @@ class ArenaModel: NSObject, SKSceneDelegate, ArenaDelegate, EntitManagerDelegate
     func removeEntity(entity:GKEntity) {
         componentManager.delete(entity: entity)
         mapManager.removeEntity(entity: entity)
-        agentManager.removeEntity(entity: entity)
+        //agentManager.removeEntity(entity: entity)
     }
     func removeAllEntity<T:GKEntity>(_ type:T.Type){
         for toRemove in componentManager.getEntitiesOf(type: type){
             removeEntity(entity: toRemove)
         }
     }
-    func addBullet(bullet:Bullet) {
-        addEntity(entity: BulletEntity(bullet: bullet, scene: sceneManager, arena: arenaDelegate))
+	func addBullet(bullet:Bullet, bulletFire:BulletFire){
+		addEntity(entity: BulletEntity(bullet: bullet, scene: sceneManager, arena: self, bulletFire:bulletFire))
     }
     func doAction(action:ArenaAction, location:CGPoint?){
         switch action {
@@ -109,21 +121,22 @@ class ArenaModel: NSObject, SKSceneDelegate, ArenaDelegate, EntitManagerDelegate
     func clicked(point:CGPoint) -> Void {
         touchManager.touched(point: point)
     }
-    func goDirection(){
-        
-    }
     func announceInOverlay(_ text: String) {
         //print("to announce\(text)")
     }
     func update(_ currentTime: TimeInterval, for scene: SKScene) {
         guard scene == self.scene else {print("not my business"); return;}
         guard let _ = lastTime else { lastTime = currentTime; return;}
-        componentManager.update(currentTime - lastTime!)
+		let delta = currentTime - lastTime!
+        componentManager.update(delta)
+		foodController.update(seconds: delta)
         lastTime = currentTime
     }
 }
-protocol ArenaDelegate {
+protocol ArenaDelegate: class{
     func removeEntity(entity:GKEntity)
+	func addEntity(entity:GKEntity)
+	func addEntityOfType<T:GKEntity>(_ type:T.Type)
 }
 enum ArenaAction:String{
     case DropEntity = "drop"
