@@ -78,11 +78,11 @@ class SpriteComponent:GKComponent{
         (spriteNode as! SKShapeNode).strokeColor = .black
         super.init()
     }
-    init(bullet:Bullet, scene:SceneComponentDelegate?=nil) {
-        let circle = SKShapeNode(circleOfRadius: bullet.size.width/2)
+    init(bullet:BulletEntity, scene:SceneComponentDelegate?=nil) {
+        let circle = SKShapeNode(circleOfRadius: bullet.radius)
         circle.fillColor = NSColor(red:0.93, green:0.38, blue:0.38, alpha:1.0)
         circle.strokeColor = .black
-        circle.lineWidth = bullet.size.width/8
+        circle.lineWidth = bullet.radius/4
         self.spriteNode = circle
         self.scene = scene
         super.init()

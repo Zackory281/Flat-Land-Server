@@ -19,9 +19,8 @@ class PhysicsComponent: GKComponent {
         physicsBody = SKPhysicsBody(texture: SKTexture(image:#imageLiteral(resourceName: "triangle")), size: CGSize(width: 30, height: 30))
         super.init()
     }
-    init(bullet:Bullet, category:BodyCategory) {
-        physicsBody = SKPhysicsBody(circleOfRadius: bullet.size.width/2)
-        physicsBody.velocity = bullet.startVelocity
+    init(bullet:BulletEntity, category:BodyCategory) {
+        physicsBody = SKPhysicsBody(circleOfRadius: bullet.radius)
         physicsBody.mass = 100
         physicsBody.friction = 0
         physicsBody.isDynamic = true

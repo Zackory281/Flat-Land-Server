@@ -85,8 +85,8 @@ class ArenaModel: NSObject, SKSceneDelegate, ArenaDelegate, EntitManagerDelegate
             removeEntity(entity: toRemove)
         }
     }
-    func addBullet(bullet:Bullet) {
-        addEntity(entity: BulletEntity(bullet: bullet, scene: sceneManager, arena: arenaDelegate))
+	func addBullet(bullet:Bullet, bulletFire:BulletFire){
+		addEntity(entity: BulletEntity(bullet: bullet, scene: sceneManager, arena: self, bulletFire:bulletFire))
     }
     func doAction(action:ArenaAction, location:CGPoint?){
         switch action {
