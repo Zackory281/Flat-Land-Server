@@ -13,6 +13,9 @@
 		F203AC3920FFBFDB006E245F /* Utils.c in Sources */ = {isa = PBXBuildFile; fileRef = F203AC3820FFBFDB006E245F /* Utils.c */; };
 		F21E044520FEFDEE003A258C /* PlayerModelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F21E044420FEFDEE003A258C /* PlayerModelController.swift */; };
 		F24B5C4920F992B200EDEEE9 /* Server.swift in Sources */ = {isa = PBXBuildFile; fileRef = F24B5C4820F992B200EDEEE9 /* Server.swift */; };
+		F26D1F3C212113AE0043BBD4 /* FoodEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26D1F3B212113AE0043BBD4 /* FoodEntity.swift */; };
+		F26D1F3F212116530043BBD4 /* FoodController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26D1F3E212116530043BBD4 /* FoodController.swift */; };
+		F26D1F4121213D1B0043BBD4 /* TankConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26D1F4021213D1B0043BBD4 /* TankConfig.swift */; };
 		F2B55228211EA71C00A9E5F1 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B55227211EA71C00A9E5F1 /* GameView.swift */; };
 		F2D50E0320FE537A008CA141 /* ModelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2D50E0220FE537A008CA141 /* ModelController.swift */; };
 		F2D5A23D211E5C18004A5D69 /* Entity.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2D5A23C211E5C18004A5D69 /* Entity.swift */; };
@@ -103,6 +106,9 @@
 		F21E045B20FF1877003A258C /* SocketTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SocketTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F21E046620FF1877003A258C /* SocketUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SocketUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F24B5C4820F992B200EDEEE9 /* Server.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Server.swift; sourceTree = "<group>"; };
+		F26D1F3B212113AE0043BBD4 /* FoodEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodEntity.swift; sourceTree = "<group>"; };
+		F26D1F3E212116530043BBD4 /* FoodController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodController.swift; sourceTree = "<group>"; };
+		F26D1F4021213D1B0043BBD4 /* TankConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TankConfig.swift; sourceTree = "<group>"; };
 		F2B55227211EA71C00A9E5F1 /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
 		F2D50E0220FE537A008CA141 /* ModelController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelController.swift; sourceTree = "<group>"; };
 		F2D5A23C211E5C18004A5D69 /* Entity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Entity.swift; sourceTree = "<group>"; };
@@ -244,6 +250,14 @@
 			path = Server;
 			sourceTree = "<group>";
 		};
+		F26D1F3D212116470043BBD4 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				F26D1F3E212116530043BBD4 /* FoodController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
 		F2B55226211EA70300A9E5F1 /* UI */ = {
 			isa = PBXGroup;
 			children = (
@@ -337,6 +351,7 @@
 		F2EECB1020DB37A9007942BF /* GameModels */ = {
 			isa = PBXGroup;
 			children = (
+				F26D1F3D212116470043BBD4 /* Controllers */,
 				F2B55226211EA70300A9E5F1 /* UI */,
 				F2D5A23B211E1A74004A5D69 /* State Machine */,
 				F2EECB1120DB37A9007942BF /* Entities.swift */,
@@ -346,6 +361,7 @@
 				F2EECB2620DB37A9007942BF /* Util.swift */,
 				F2EECB2720DB37A9007942BF /* ArenaModel.swift */,
 				F2EECB2820DB37A9007942BF /* entities */,
+				F26D1F4021213D1B0043BBD4 /* TankConfig.swift */,
 			);
 			path = GameModels;
 			sourceTree = "<group>";
@@ -388,6 +404,7 @@
 				F2EECB2B20DB37A9007942BF /* ShapeTankEntity.swift */,
 				F2EECB2C20DB37A9007942BF /* ShapeEntity.swift */,
 				F2D5A23C211E5C18004A5D69 /* Entity.swift */,
+				F26D1F3B212113AE0043BBD4 /* FoodEntity.swift */,
 			);
 			path = entities;
 			sourceTree = "<group>";
@@ -734,9 +751,11 @@
 				F2EECB3020DB37A9007942BF /* SceneManager.swift in Sources */,
 				F2EECB3520DB37A9007942BF /* ButtonManager.swift in Sources */,
 				F2D50E0320FE537A008CA141 /* ModelController.swift in Sources */,
+				F26D1F4121213D1B0043BBD4 /* TankConfig.swift in Sources */,
 				F2EECB4120DB37A9007942BF /* ArenaModel.swift in Sources */,
 				F2EECAE520DB377F007942BF /* GameScene.swift in Sources */,
 				F2EECB4520DB37A9007942BF /* ShapeEntity.swift in Sources */,
+				F26D1F3C212113AE0043BBD4 /* FoodEntity.swift in Sources */,
 				F2EECB3220DB37A9007942BF /* ComponentManager.swift in Sources */,
 				F2EECB3620DB37A9007942BF /* TouchManager.swift in Sources */,
 				F2EECB4020DB37A9007942BF /* Util.swift in Sources */,
@@ -750,6 +769,7 @@
 				F2EECB3920DB37A9007942BF /* HealthComponents.swift in Sources */,
 				F2EECB3720DB37A9007942BF /* EntityManagerExtension.swift in Sources */,
 				F2EECB3B20DB37A9007942BF /* SpriteComponent.swift in Sources */,
+				F26D1F3F212116530043BBD4 /* FoodController.swift in Sources */,
 				F2FDEC5320FEDD1700299BAA /* ConnectionUtil.swift in Sources */,
 				F2D5A23D211E5C18004A5D69 /* Entity.swift in Sources */,
 				F2EECB3320DB37A9007942BF /* AgentManager.swift in Sources */,

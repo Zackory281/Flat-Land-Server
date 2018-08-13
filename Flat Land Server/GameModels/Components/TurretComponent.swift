@@ -18,9 +18,9 @@ class TurretComponent: GKComponent {
     var turretRange:Float = 700
     var bulletSpeed:CGFloat = 400
     var bulletSize:CGSize = CGSize(width: 20, height: 20)
-	var tank:TankEntity
+	var tank:Tank
     
-	init(tank:TankEntity, turretDelegate:TurretDelegate?, map:MapComponentDelegate?) {
+	init(tank:Tank, turretDelegate:TurretDelegate?, map:MapComponentDelegate?) {
 		self.turretDelegate = turretDelegate
 		self.map = map
 		self.tank = tank
