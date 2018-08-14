@@ -21,7 +21,7 @@ class FoodEntity:GKEntity {
 		super.init()
 		self.addComponent(SpriteComponent(foodEntity: self, scene: sceneDelegate))
 		self.addComponent(PhysicsComponent(foodEntity: self))
-		self.addComponent(HealthComponent(arenaDelegate: arenaDelegate))
+		self.addComponent(HealthComponent(health:10,maxHealth:10,arenaDelegate: arenaDelegate))
 		self.spriteComponent.spriteNode.position = foodSpawn.position
 		physicsComponent.physicsBody.angularVelocity = getRandomDouble()-0.5
 	}

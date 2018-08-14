@@ -76,7 +76,16 @@ class PhysicsComponent: GKComponent {
 			physicsBody.applyForce(randomVelocity! - physicsBody.velocity * frictionCoef)
 		}
 		for repellee in repellees.allObjects{
-			repellee.physicsBody?.applyImpulse((repellee.position - physicsBody.node!.position)*0.01)
+			switch repellee.physicsBody?.categoryBitMask{
+			case FoodCate:
+				repellee.physicsBody?.applyImpulse((repellee.position - physicsBody.node!.position)*0.01)
+			case EntityCate:
+				repellee.physicsBody?.applyImpulse((repellee.position - physicsBody.node!.position)*3)
+			case BulletCate:
+				physicsBody.applyImpulse(repellee.physicsBody!.velocity*0.002)
+			default:
+				break
+			}
 		}
 	}
 	var frictionCoef:CGFloat = 20

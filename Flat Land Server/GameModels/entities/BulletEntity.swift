@@ -22,8 +22,8 @@ class BulletEntity: GKEntity {
 		if let targetHealth = target.component(ofType: HealthComponent.self)?.health{
 			dealtDamage = min(dealtDamage, targetHealth)
 		}
-		healthComp.health -= dealtDamage
-		bullet.healthComponent.health -= dealtDamage
+		healthComp.dockHealth(dealtDamage)
+		bullet.healthComponent.dockHealth(dealtDamage) 
 	}
 	let disapearFunction = { (entity:GKEntity) -> Bool in
 		let disappearComponent:DisappearComponent = entity.component(ofType: DisappearComponent.self)!
