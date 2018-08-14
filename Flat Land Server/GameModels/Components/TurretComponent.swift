@@ -70,7 +70,9 @@ class TurretComponent: GKComponent {
 			let speed = turret.bullet.speed
 			let rotation = tankEntity!.rotation + turret.rotation
 			let velocity = CGVector(dx: speed * cos(rotation), dy: speed * sin(rotation))
-			let bulletFire = BulletFire.init(shooter: entity!,turret: turret, position: scene.convert(node.position+CGPoint(x: turretEntity.turretLength, y: 0), from: tankNode), velocity: velocity)
+			//let fromNode = scene.convert(CGPoint(x: turretEntity.turretLength, y: 0), to: turretEntity.node!)
+			let bulletFire = BulletFire.init(shooter: entity!,turret: turret, position: scene.convert(CGPoint(x: turretEntity.turretLength, y: 0), from: node), velocity: velocity)
+			print(node.position)
 			turretDelegate?.fire(bullet:turret.bullet, bulletFire: bulletFire)
 			turretEntity.node!.run(fireAction)
 			recoil = recoil + velocity * turret.bullet.mass
