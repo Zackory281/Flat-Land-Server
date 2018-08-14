@@ -29,21 +29,15 @@ class PhysicsManager: NSObject, SKPhysicsContactDelegate {
 		}
 		//print(contact.bodyA.node?.entity)
 		switch (body1.categoryBitMask, body2.categoryBitMask) {
-		case (FoodCate, FoodCate):
-			repelStart(body1: contact.bodyA, body2: contact.bodyB)
+		case (FoodCate, FoodCate),(EntityCate, FoodCate):
+			repelStart(body1: body1, body2: body2)
 		case (BulletCate, FoodCate):
-			(body1.node?.entity as? BulletEntity)?.addHitEntity(entity: body2.node!.entity!)
-			repelStart(body1: contact.bodyA, body2: contact.bodyB)
+			guard let entity2 = body2.node?.entity else{ return}
+			repelStart(body1: body1, body2: body2)
+			(body1.node?.entity as? BulletEntity)?.addHitEntity(entity: entity2)
 		default:
 			break
 		}
-//        if contact.bodyA.categoryBitMask != BulletCate, contact.bodyB.categoryBitMask == BulletCate {
-//        }else if contact.bodyB.categoryBitMask != BulletCate, contact.bodyA.categoryBitMask == BulletCate {
-//            body1 = contact.bodyB; body2 = contact.bodyA;
-//        }else { return }
-//        guard let entity = delegate.getEntityOfBody(body: body1!, type: GKEntity.self) else {return}
-//        guard let bulletEntity = delegate.getEntityOfBody(body: body2!, type: BulletEntity.self) else {return}
-//		bulletEntity.addHitEntity(entity: entity)
     }
 	/*
 	let NothingCate:UInt32 = UInt32.shift(32)
@@ -61,22 +55,24 @@ class PhysicsManager: NSObject, SKPhysicsContactDelegate {
 		body2.node?.entity?.component(ofType: PhysicsComponent.self)?.repellees.remove(body1.node!)
 	}
     func didEnd(_ contact: SKPhysicsContact) {
-		switch (contact.bodyA.categoryBitMask, contact.bodyB.categoryBitMask) {
-		case (FoodCate, FoodCate):
-			repelEnd(body1: contact.bodyA, body2: contact.bodyB)
+		var body1:SKPhysicsBody = contact.bodyA//entity,
+		var body2:SKPhysicsBody = contact.bodyB//bullet
+		if body2.categoryBitMask < body1.categoryBitMask{
+			let temp = body1
+			body1 = body2
+			body2 = temp
+		}
+		//print(contact.bodyA.node?.entity)
+		switch (body1.categoryBitMask, body2.categoryBitMask) {
+		case (FoodCate, FoodCate),(EntityCate, FoodCate):
+			repelEnd(body1: body1, body2: body2)
+		case (BulletCate, FoodCate):
+			guard let entity2 = body2.node?.entity else{ return}
+			repelEnd(body1: body1, body2: body2)
+			(body1.node?.entity as? BulletEntity)?.addHitEntity(entity: entity2)
 		default:
 			break
 		}
-		var entityBody:SKPhysicsBody?
-		var bulletBody:SKPhysicsBody?
-		if contact.bodyA.categoryBitMask != BulletCate, contact.bodyB.categoryBitMask == BulletCate {
-			entityBody = contact.bodyA; bulletBody = contact.bodyB;
-		}else if contact.bodyB.categoryBitMask != BulletCate, contact.bodyA.categoryBitMask == BulletCate {
-			entityBody = contact.bodyB; bulletBody = contact.bodyA;
-		}else { return }
-		guard let tankEntity = delegate.getEntityOfBody(body: entityBody!, type: BuildingEntity.self) else {return}
-		guard let bulletEntity = delegate.getEntityOfBody(body: bulletBody!, type: BulletEntity.self) else {return}
-		bulletEntity.removeHitEntity(entity: tankEntity)
     }
 }
 

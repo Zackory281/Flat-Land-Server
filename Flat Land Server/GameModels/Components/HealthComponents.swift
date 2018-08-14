@@ -30,6 +30,10 @@ class HealthComponent:GKComponent{
     func isDead()->Bool{
         return health <= 0
     }
+	func dockHealth(_ amount:Double){
+		self.health -= amount
+		self.entity?.component(ofType: SpriteComponent.self)?.spriteNode.run(hurtAction)
+	}
     override func update(deltaTime seconds: TimeInterval) {
         if healthPercent <= 0{
             arena?.removeEntity(entity: entity!)

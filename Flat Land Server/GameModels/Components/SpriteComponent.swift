@@ -171,3 +171,12 @@ let fireAction:SKAction = SKAction.sequence([
 	.scaleX(to: 1.1, y: 1, duration: 0.1),
 	.scaleX(to: 1.0, y: 1, duration: 0.1),
 	])
+
+let hurtAction:SKAction = SKAction.sequence([
+	SKAction.customAction(withDuration: 1, actionBlock: {
+		node, elapsedTime in
+		if let node = node as? SKShapeNode{
+			node.fillColor = NSColor(red: 1, green: 0, blue: 0, alpha: 1)
+		}
+	})
+	])
