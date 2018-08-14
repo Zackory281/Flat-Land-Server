@@ -63,8 +63,7 @@ class TurretComponent: GKComponent {
 	
 	func tickFire(index:Int, tankNode:SKNode){
 		for turretEntity in tankEntity!.turrets{
-			guard let node = turretEntity.node, turretEntity.turret.fireIndex == index else {
-				print("not of index");continue }
+			guard let node = turretEntity.node, turretEntity.turret.fireIndex == index else {continue }
 			let turret = turretEntity.turret
 			let scene = node.scene!
 			let speed = turret.bullet.speed
@@ -72,7 +71,6 @@ class TurretComponent: GKComponent {
 			let velocity = CGVector(dx: speed * cos(rotation), dy: speed * sin(rotation))
 			//let fromNode = scene.convert(CGPoint(x: turretEntity.turretLength, y: 0), to: turretEntity.node!)
 			let bulletFire = BulletFire.init(shooter: entity!,turret: turret, position: scene.convert(CGPoint(x: turretEntity.turretLength, y: 0), from: node), velocity: velocity)
-			print(node.position)
 			turretDelegate?.fire(bullet:turret.bullet, bulletFire: bulletFire)
 			turretEntity.node!.run(fireAction)
 			recoil = recoil + velocity * turret.bullet.mass

@@ -10,13 +10,24 @@ import Foundation
 import GameplayKit
 
 class FoodEntity:GKEntity {
-	let foodType:FoodType = .Triangle
-	init(sceneDelegate:SceneComponentDelegate, arenaDelegate:ArenaDelegate, type:FoodType, position:CGPoint) {
+	
+	lazy var foodType:FoodType = {
+		return self.food.foodType
+	}()
+	let food:Food
+	let size:CGFloat = 15
+	init(sceneDelegate:SceneComponentDelegate, arenaDelegate:ArenaDelegate, foodSpawn:FoodSpawn) {
+		self.food = foodSpawn.food
 		super.init()
-		self.addComponent(SpriteComponent(foodEntity:self, scene: sceneDelegate))
-		self.addComponent(PhysicsComponent(foodType: .Triangle))
+		self.addComponent(SpriteComponent(foodEntity: self, scene: sceneDelegate))
+		self.addComponent(PhysicsComponent(foodEntity: self))
 		self.addComponent(HealthComponent(arenaDelegate: arenaDelegate))
-		self.spriteComponent.spriteNode.position = position
+		self.spriteComponent.spriteNode.position = foodSpawn.position
+		physicsComponent.physicsBody.angularVelocity = getRandomDouble()-0.5
+	}
+	
+	override func update(deltaTime seconds: TimeInterval) {
+		//physicsComponent.physicsBody.applyImpulse(getRandomVector(10))
 	}
 	
 	var spriteComponent:SpriteComponent{ return self.component(ofType: SpriteComponent.self)! }

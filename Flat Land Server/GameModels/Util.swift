@@ -8,6 +8,7 @@
 
 import Foundation
 import CoreGraphics
+import GameplayKit
 
 extension CGPoint{
     static func -(lhs:CGPoint,rhs:CGPoint)->CGVector{
@@ -26,7 +27,6 @@ extension CGPoint{
         return (atan(vector.dy/vector.dx))
     }
 	static func getAngle(_ point:CGPoint)->CGFloat{
-		print(getAngle(point))
 		if point.x < 0{
 			print("is negative")
 			return atan2(point.y, point.x) * (CGFloat(-180.0) / CGFloat.pi);
@@ -47,6 +47,9 @@ extension CGVector{
 	static func +(lhs:CGVector, rhs:CGVector)->CGVector{
 		return CGVector(dx: lhs.dx+rhs.dx, dy: lhs.dy+rhs.dy)
 	}
+	static func -(lhs:CGVector, rhs:CGVector)->CGVector{
+		return CGVector(dx: lhs.dx-rhs.dx, dy: lhs.dy-rhs.dy)
+	}
 }
 extension UInt32{
     static func shift(_ amount:UInt32)-> UInt32{
@@ -56,4 +59,44 @@ extension UInt32{
     static func fill(_ amount:UInt32)-> UInt32{
         return UInt32(UInt64(1 << (amount)) - 1)
     }
+}
+
+func getRandomVector(_ velocity:CGFloat=1) -> CGVector{
+	let angle = getRandomAngle()
+	return CGVector(dx: cos(angle), dy: sin(angle)) * velocity
+}
+func getRandomAngle() -> CGFloat {
+	return CGFloat(GKRandomSource().nextInt(upperBound: 628)) / 100
+}
+func getRandomDouble() -> CGFloat {
+	return CGFloat(GKRandomSource().nextInt(upperBound: 100)) / 100
+}
+
+class WeakSet<T> {
+	
+	var count: Int {
+		return weakStorage.count
+	}
+	
+	private let weakStorage = NSHashTable<AnyObject>.weakObjects()
+	
+	func add(_ object: T) {
+		weakStorage.add(object as AnyObject)
+	}
+	
+	func remove(_ object: T) {
+		weakStorage.remove(object as AnyObject)
+	}
+	
+	func removeAllObjects() {
+		weakStorage.removeAllObjects()
+	}
+	
+	var allObjects: [T] {
+		let enumerator = weakStorage.objectEnumerator()
+		let iterator = AnyIterator {
+			return enumerator.nextObject() as! T?
+		}
+		return Array(iterator)
+	}
 }
