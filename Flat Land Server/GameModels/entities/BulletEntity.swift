@@ -10,7 +10,7 @@ import Foundation
 import GameplayKit
 
 class BulletEntity: GKEntity {
-	var hitEntity = Set<GKEntity>()
+	weak var hitEntity:GKEntity?
 	weak var from:ShapeTankEntity?
 	weak var turret:Turret?
 	lazy var radius:CGFloat = {
@@ -18,8 +18,13 @@ class BulletEntity: GKEntity {
 	}()
 	var hitAction = {(_ bullet:BulletEntity, _ target:GKEntity)->() in
 		guard let healthComp = target.component(ofType: HealthComponent.self), target != bullet.from else { return }
-		healthComp.health -= bullet.bullet.damage
-		bullet.healthComponent.health -= bullet.bullet.damage
+		var dealtDamage:Double = bullet.bullet.damage
+		if let targetHealth = target.component(ofType: HealthComponent.self)?.health{
+			dealtDamage = min(dealtDamage, targetHealth)
+			print(dealtDamage)
+		}
+		healthComp.health -= dealtDamage
+		bullet.healthComponent.health -= dealtDamage
 	}
 	let disapearFunction = { (entity:GKEntity) -> Bool in
 		let disappearComponent:DisappearComponent = entity.component(ofType: DisappearComponent.self)!
@@ -34,17 +39,29 @@ class BulletEntity: GKEntity {
 		self.from = bulletFire.shooter as? ShapeTankEntity
 		self.turret = bulletFire.turret
 		
-		self.addComponent(DisappearComponent(function:disapearFunction, arena: arena))
+		self.addComponent(DisappearComponent(function:disapearFunction,timeOut:bullet.timeout, arena: arena))
 		self.addComponent(SpriteComponent(bullet: self, scene:scene))
 		self.addComponent(PhysicsComponent(bullet:self,category:.Bullet))
-		self.addComponent(HealthComponent())
+		self.addComponent(HealthComponent(bullet:bullet ,arenaDelegate: arena))
 		
 		spriteComponent.spriteNode.position = bulletFire.position
 		physicsComponent.physicsBody.velocity = bulletFire.velocity
 	}
 	override func update(deltaTime seconds: TimeInterval) {
-		hitEntity.forEach { [weak self] entity in
-			hitAction(self!, entity)
+		if let hitEntity = hitEntity{
+			hitAction(self, hitEntity)
+		}
+	}
+	func removeHitEntity(entity:GKEntity){
+		if let hitEntity = hitEntity, hitEntity == entity{
+			self.hitEntity = nil
+		}
+	}
+	func addHitEntity(entity:GKEntity){
+		if let hitEntity = hitEntity, hitEntity != entity{
+			self.hitEntity = entity
+		}else{
+			self.hitEntity = entity
 		}
 	}
 	required init?(coder aDecoder: NSCoder) {

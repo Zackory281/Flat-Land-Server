@@ -29,7 +29,7 @@ class PhysicsManager: NSObject, SKPhysicsContactDelegate {
         }else { return }
         guard let tankEntity = delegate.getEntityOfBody(body: entityBody!, type: BuildingEntity.self) else {return}
         guard let bulletEntity = delegate.getEntityOfBody(body: bulletBody!, type: BulletEntity.self) else {return}
-        bulletEntity.hitEntity.insert(tankEntity)
+		bulletEntity.addHitEntity(entity: tankEntity)
     }
     func didEnd(_ contact: SKPhysicsContact) {
 		var entityBody:SKPhysicsBody?
@@ -41,7 +41,7 @@ class PhysicsManager: NSObject, SKPhysicsContactDelegate {
 		}else { return }
 		guard let tankEntity = delegate.getEntityOfBody(body: entityBody!, type: BuildingEntity.self) else {return}
 		guard let bulletEntity = delegate.getEntityOfBody(body: bulletBody!, type: BulletEntity.self) else {return}
-		bulletEntity.hitEntity.remove(tankEntity)
+		bulletEntity.removeHitEntity(entity: tankEntity)
     }
 }
 

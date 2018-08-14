@@ -11,12 +11,13 @@ import GameplayKit
 
 class DisappearComponent: GKComponent {
     var arena:ArenaDelegate
-    var timeOut:TimeInterval = 2
+    var timeOut:TimeInterval
     var shouldDisappear:DisappearFunction
     var passedTime:TimeInterval = 0
-    init(function:@escaping DisappearFunction, arena:ArenaDelegate) {
+	init(function:@escaping DisappearFunction, timeOut:TimeInterval=2, arena:ArenaDelegate) {
         self.shouldDisappear = function
         self.arena = arena
+		self.timeOut = timeOut
         super.init()
     }
     override func update(deltaTime seconds: TimeInterval) {

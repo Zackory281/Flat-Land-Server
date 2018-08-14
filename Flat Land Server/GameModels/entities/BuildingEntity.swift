@@ -23,7 +23,7 @@ class BuildingEntity: GKEntity {
         super.init()
         self.addComponent(SpriteComponent.init(building: building, scene:scene))
         self.addComponent(PhysicsComponent(building: building))
-        self.addComponent(HealthComponent(health:30, maxHealth:30))
+		self.addComponent(HealthComponent(health:30, maxHealth:30, arenaDelegate:arena))
         self.addComponent(DisappearComponent(function: disappearFunction, arena: arena))
     }
     required init?(coder aDecoder: NSCoder) {

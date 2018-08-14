@@ -46,6 +46,7 @@ class ArenaModel: NSObject, SKSceneDelegate, ArenaDelegate, EntitManagerDelegate
         mapManager = MapManager()
         agentManager = AgentManager()
         scene.clickDelegate = self
+		scene.arenaDelegate = self
         
         self.initiateSceneComp()
         scene.delegate = self
@@ -69,8 +70,8 @@ class ArenaModel: NSObject, SKSceneDelegate, ArenaDelegate, EntitManagerDelegate
         mapManager.addEntity(entity: entity)
         //agentManager.addEntity(entity: entity)
     }
-	func getControllableEntity() -> Controllable {
-		let entity = ShapeTankEntity(tank:getTank(type: .triplet),position:CGPoint.init(x: 100, y: 120), scene:self.sceneManager, turretDelegate:turretManager, map:self.mapManager, arena:self)
+	func getControllableEntity(tankType:TankType=TankType.triplet) -> Controllable {
+		let entity = ShapeTankEntity(tank:getTank(type: tankType),position:CGPoint.init(x: 100, y: 120), scene:self.sceneManager, turretDelegate:turretManager, map:self.mapManager, arena:self)
 		self.addEntity(entity: entity)
 		return entity
 	}
