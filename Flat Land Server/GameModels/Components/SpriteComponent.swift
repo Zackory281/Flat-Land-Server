@@ -96,8 +96,10 @@ class SpriteComponent:GKComponent{
 		node.fillColor = NSColor(red:1.00, green:0.89, blue:0.42, alpha:1.0)
 		node.strokeColor = NSColor(red:0.75, green:0.68, blue:0.31, alpha:1.0)
 		node.lineWidth = 3
-		node.entity = foodEntity
-		self.spriteNode = node
+		let texture = scene.getTexture(node: node)
+		let spriteNode = SKSpriteNode(texture: texture)
+		spriteNode.entity = foodEntity
+		self.spriteNode = spriteNode
 		super.init()
 	}
     var bar:SKShapeNode?
@@ -168,15 +170,19 @@ let TURRETZBUFFER:CGFloat = -10
 let BULLETZBUFFER:CGFloat = 20
 
 let fireAction:SKAction = SKAction.sequence([
-	.scaleX(to: 1.1, y: 1, duration: 0.1),
+	.scaleX(to: 0.9, y: 1, duration: 0.1),
 	.scaleX(to: 1.0, y: 1, duration: 0.1),
 	])
 
 let hurtAction:SKAction = SKAction.sequence([
-	SKAction.customAction(withDuration: 1, actionBlock: {
-		node, elapsedTime in
-		if let node = node as? SKShapeNode{
-			node.fillColor = NSColor(red: 1, green: 0, blue: 0, alpha: 1)
-		}
-	})
+	SKAction.colorize(with: NSColor.red, colorBlendFactor: 0.5, duration: 0.05),
+	SKAction.colorize(withColorBlendFactor: 0, duration: 0.05)
 	])
+//	SKAction.sequence([
+//	SKAction.customAction(withDuration: 1, actionBlock: {
+//		node, elapsedTime in
+//		if let node = node as? SKSpriteNode{
+//			SKSpriteNode().
+//		}
+//	})
+//	])

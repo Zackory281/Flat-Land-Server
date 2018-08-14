@@ -53,8 +53,8 @@ class PhysicsComponent: GKComponent {
 		physicsBody.isDynamic = true
 		physicsBody.mass = 0.1
 		physicsBody.velocity = CGVector(dx: 0, dy: 0)
-		frictionCoef = 0.2
-		self.randomVelocity = getRandomVector(3)
+		frictionCoef = 1
+		self.randomVelocity = getRandomVector(10)
 		super.init()
 		setCategory(category: .Food)
 	}
@@ -78,7 +78,7 @@ class PhysicsComponent: GKComponent {
 		for repellee in repellees.allObjects{
 			switch repellee.physicsBody?.categoryBitMask{
 			case FoodCate:
-				repellee.physicsBody?.applyImpulse((repellee.position - physicsBody.node!.position)*0.01)
+				repellee.physicsBody?.applyImpulse((repellee.position - physicsBody.node!.position)*0.5)
 			case EntityCate:
 				repellee.physicsBody?.applyImpulse((repellee.position - physicsBody.node!.position)*3)
 			case BulletCate:

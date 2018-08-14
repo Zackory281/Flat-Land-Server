@@ -45,7 +45,7 @@ func getTank(type:TankType) -> Tank{
 	}
 }
 
-let OCTATANKWIDTH:Double = 0.8
+let OCTATANKWIDTH:Double = 0.9
 let OCTATANKHEIGHT:Double = 0.7653/2
 
 enum TankType {
