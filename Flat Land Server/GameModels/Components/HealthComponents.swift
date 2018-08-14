@@ -32,7 +32,12 @@ class HealthComponent:GKComponent{
     }
 	func dockHealth(_ amount:Double){
 		self.health -= amount
-		self.entity?.component(ofType: SpriteComponent.self)?.spriteNode.run(hurtAction)
+		if self.entity is FoodEntity{
+			guard let node = self.entity?.component(ofType: SpriteComponent.self)?.spriteNode else {return}
+			if let _ = node.action(forKey: "hurt"){}else{
+				node.run(hurtAction, withKey: "hurt")
+			}
+		}
 	}
     override func update(deltaTime seconds: TimeInterval) {
         if healthPercent <= 0{
