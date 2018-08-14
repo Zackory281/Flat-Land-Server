@@ -30,7 +30,7 @@ class PhysicsComponent: GKComponent {
 	}
 	init(tank:Tank) {
 		physicsBody = SKPhysicsBody(circleOfRadius: tank.size/2)
-		physicsBody.mass = 1
+		physicsBody.mass = tank.mass
 		//physicsBody.friction = 1.5
 		physicsBody.isDynamic = true
 		physicsBody.allowsRotation = false
@@ -65,9 +65,11 @@ class PhysicsComponent: GKComponent {
 		if spriteNode != nil, spriteNode?.physicsBody == nil{
 			spriteNode!.physicsBody = self.physicsBody
 		}
-		physicsBody.applyForce(forceDirection+frictionForce)
+		if let tankEntity = entity! as? ShapeTankEntity{
+			physicsBody.applyForce(forceDirection*tankEntity.tank.force+frictionForce)
+		}
 	}
-	var frictionCoef:CGFloat = 2
+	var frictionCoef:CGFloat = 20
 	var frictionForce:CGVector{
 		return self.physicsBody.velocity * -frictionCoef
 	}

@@ -12,7 +12,6 @@ import GameplayKit
 class SpriteComponent:GKComponent{
     var spriteNode:SKNode
     var healthBar:SKShapeNode?
-	var tank:GKEntity?
     init(polygon:EntityType, scene:SceneComponentDelegate?=nil) {
         spriteNode = SKSpriteNode(texture: textures[polygon]!)
         spriteNode.xScale = 1/6
@@ -35,13 +34,14 @@ class SpriteComponent:GKComponent{
 			turretNode.zRotation = turret.rotation
 			turretNode.position = turretEntity.getTurretPosition()
             //let action = SKAction.repeatForever(SKAction.sequence([SKAction.wait(forDuration: 0.8), SKAction.scale(to: 2, duration: 0.1), SKAction.scale(to: 1.0, duration: 0.1)]))
+			turretNode.zPosition = TURRETZBUFFER + turret.zBuffer
             turretEntity.node = turretNode
             spriteNode.addChild(turretNode)
         }
+		spriteNode.zPosition = TANKZBUFFER
 	  	tankEntity.node = spriteNode
         self.spriteNode = spriteNode
         self.scene = scene
-		self.tank = tankEntity
         super.init()
     }
     init(_ x:Int,_ y:Int,_ width:Int,_ height:Int,label text:String, scene:SceneComponentDelegate?=nil) {
@@ -83,6 +83,7 @@ class SpriteComponent:GKComponent{
         circle.fillColor = NSColor(red:0.93, green:0.38, blue:0.38, alpha:1.0)
         circle.strokeColor = .black
         circle.lineWidth = bullet.radius/4
+		circle.zPosition = BULLETZBUFFER
         self.spriteNode = circle
         self.scene = scene
         super.init()
@@ -117,7 +118,7 @@ class SpriteComponent:GKComponent{
                 scene!.addNode(node: healthBar!)
             }
         }
-		if let tank = self.tank{
+		if let tank = self.entity as? ShapeTankEntity{
 			spriteNode.zRotation = tank.rotation
 		}
     }
@@ -155,3 +156,11 @@ enum EntityType {
     case Circle
 }
 
+let TANKZBUFFER:CGFloat = 0
+let TURRETZBUFFER:CGFloat = -10
+let BULLETZBUFFER:CGFloat = 20
+
+let fireAction:SKAction = SKAction.sequence([
+	.scaleX(to: 1.1, y: 1, duration: 0.1),
+	.scaleX(to: 1.0, y: 1, duration: 0.1),
+	])

@@ -12,6 +12,8 @@
 		9003455EDC125C76B9845874 /* Pods_Flat_Land_ServerUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C33BC4A06774F3759F32F88 /* Pods_Flat_Land_ServerUITests.framework */; };
 		F203AC3920FFBFDB006E245F /* Utils.c in Sources */ = {isa = PBXBuildFile; fileRef = F203AC3820FFBFDB006E245F /* Utils.c */; };
 		F21E044520FEFDEE003A258C /* PlayerModelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F21E044420FEFDEE003A258C /* PlayerModelController.swift */; };
+		F2463CBA2122672000C65973 /* TankAction.sks in Resources */ = {isa = PBXBuildFile; fileRef = F2463CB92122672000C65973 /* TankAction.sks */; };
+		F2463CBE212267C500C65973 /* TankScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = F2463CBD212267C500C65973 /* TankScene.sks */; };
 		F24B5C4920F992B200EDEEE9 /* Server.swift in Sources */ = {isa = PBXBuildFile; fileRef = F24B5C4820F992B200EDEEE9 /* Server.swift */; };
 		F26D1F3C212113AE0043BBD4 /* FoodEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26D1F3B212113AE0043BBD4 /* FoodEntity.swift */; };
 		F26D1F3F212116530043BBD4 /* FoodController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26D1F3E212116530043BBD4 /* FoodController.swift */; };
@@ -102,6 +104,8 @@
 		F21E044A20FF1875003A258C /* Socket.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Socket.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F21E045B20FF1877003A258C /* SocketTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SocketTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F21E046620FF1877003A258C /* SocketUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SocketUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F2463CB92122672000C65973 /* TankAction.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = TankAction.sks; sourceTree = "<group>"; };
+		F2463CBD212267C500C65973 /* TankScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = TankScene.sks; sourceTree = "<group>"; };
 		F24B5C4820F992B200EDEEE9 /* Server.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Server.swift; sourceTree = "<group>"; };
 		F26D1F3B212113AE0043BBD4 /* FoodEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodEntity.swift; sourceTree = "<group>"; };
 		F26D1F3E212116530043BBD4 /* FoodController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodController.swift; sourceTree = "<group>"; };
@@ -285,6 +289,8 @@
 				F2EECAE620DB377F007942BF /* ArenaViewController.swift */,
 				F2EECB4620DB3B36007942BF /* ArenaScene.swift */,
 				F2B55227211EA71C00A9E5F1 /* GameView.swift */,
+				F2463CB92122672000C65973 /* TankAction.sks */,
+				F2463CBD212267C500C65973 /* TankScene.sks */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -627,6 +633,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F2463CBE212267C500C65973 /* TankScene.sks in Resources */,
+				F2463CBA2122672000C65973 /* TankAction.sks in Resources */,
 				F2EECAE920DB377F007942BF /* Assets.xcassets in Resources */,
 				F2EECAEC20DB377F007942BF /* Main.storyboard in Resources */,
 			);

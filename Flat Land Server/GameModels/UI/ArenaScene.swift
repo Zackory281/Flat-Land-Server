@@ -12,6 +12,7 @@ import GameplayKit
 class ArenaScene: SKScene {
     var clickDelegate:ArenaSceneTouchDelegate?
 	weak var dummy:Controllable?
+	weak var arenaDelegate:ArenaDelegate?
 	var directions:[Direction:Bool] = [.UP:false,.RIGHT:false,.DOWN:false,.LEFT:false]
     override func mouseDown(with event: NSEvent) {
         clickDelegate?.clicked(point: event.location(in: self))
@@ -38,24 +39,42 @@ class ArenaScene: SKScene {
 		updateDirection()
     }
 	override func keyDown(with event: NSEvent) {
-		if event.characters == "p", dummy == nil{
-			dummy = clickDelegate!.getControllable()
+		if event.characters == "p"{
+			makeMyself(type: .triplet)
+			return
+		}
+		switch event.characters {
+		case "1":
+			makeMyself(type: .destroyer)
+			return
+		case "2":
+			makeMyself(type: .octatank)
+			return
+		default:
+			break
 		}
 		guard let direction = CharForDirection[event.characters!]else{return}
 		directions[direction] = true
 		updateDirection()
 	}
+	
+	func makeMyself(type:TankType){
+		if let dummy = dummy, let arena = arenaDelegate{
+			arena.removeEntity(entity: dummy as! GKEntity)
+		}
+		dummy = clickDelegate!.getControllable(tankType: type)
+	}
 }
 
 extension ArenaModel{
-	func getControllable()->Controllable{
-		return getControllableEntity()
+	func getControllable(tankType:TankType)->Controllable{
+		return getControllableEntity(tankType:tankType)
 	}
 }
 protocol ArenaSceneTouchDelegate {
     func clicked(point:CGPoint) -> Void
     func makeAllTankGo(direction:Direction?)
-	func getControllable()->Controllable
+	func getControllable(tankType:TankType)->Controllable
 }
 let CharForDirection:[String:Direction] = [
 	"w":.UP,
@@ -64,10 +83,10 @@ let CharForDirection:[String:Direction] = [
 	"d":.RIGHT,
 ]
 let DirectionForImpulse:[Direction:CGVector] = [
-    .UP     :CGVector(dx: 00, dy: 400),
-    .DOWN   :CGVector(dx: 00, dy: -400),
-    .RIGHT  :CGVector(dx: 400, dy: 00),
-    .LEFT   :CGVector(dx: -400, dy: 00),
+    .UP     :CGVector(dx: 00, dy: 1),
+    .DOWN   :CGVector(dx: 00, dy: -1),
+    .RIGHT  :CGVector(dx: 1, dy: 00),
+    .LEFT   :CGVector(dx: -1, dy: 00),
 ]
 let DirectionforKey:[String:Direction] = [
     "w":.UP,

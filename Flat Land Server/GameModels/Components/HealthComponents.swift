@@ -12,17 +12,19 @@ import GameplayKit
 
 
 class HealthComponent:GKComponent{
-    var health:CGFloat
-    var maxHealth:CGFloat
-    var healthPercent:CGFloat{ return health/maxHealth }
+    var health:Double!
+    var maxHealth:Double!
+    var healthPercent:Double{ return health/maxHealth }
     var arena:ArenaDelegate?
-    init(health:CGFloat=1, maxHealth:CGFloat=1) {
-        self.health = health
-        self.maxHealth = maxHealth
-        super.init()
-    }
-    convenience init(health:CGFloat=1, maxHealth:CGFloat=1,arenaDelegate:ArenaDelegate?){
-        self.init(health:health, maxHealth:maxHealth)
+	init(health:Double=1, maxHealth:Double=1,bullet:Bullet?=nil,arenaDelegate:ArenaDelegate?){
+		super.init()
+		if let bullet = bullet{
+			self.health = bullet.health
+			self.maxHealth = health
+		}else{
+			self.health = health
+			self.maxHealth = maxHealth
+		}
         self.arena = arenaDelegate
     }
     func isDead()->Bool{

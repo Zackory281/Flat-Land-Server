@@ -55,7 +55,7 @@ class Player{
             print("contorllable can't be moved");
             return;
         }
-        move(unit * 200)
+        move(unit)
     }
 }
 

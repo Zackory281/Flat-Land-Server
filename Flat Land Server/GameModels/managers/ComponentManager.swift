@@ -33,7 +33,7 @@ class ComponentManager{
     func update(_ delta:TimeInterval ){
         //removing comonents
         for entity in toRemove{
-            entities.remove(entity)
+            entities.set.remove(entity)
             perSystem({system in
                 system.removeComponent(foundIn: entity)
             })
