@@ -21,7 +21,6 @@ class BulletEntity: GKEntity {
 		var dealtDamage:Double = bullet.bullet.damage
 		if let targetHealth = target.component(ofType: HealthComponent.self)?.health{
 			dealtDamage = min(dealtDamage, targetHealth)
-			print(dealtDamage)
 		}
 		healthComp.health -= dealtDamage
 		bullet.healthComponent.health -= dealtDamage

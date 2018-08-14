@@ -39,6 +39,7 @@ class SpriteComponent:GKComponent{
             spriteNode.addChild(turretNode)
         }
 		spriteNode.zPosition = TANKZBUFFER
+		spriteNode.entity = tankEntity
 	  	tankEntity.node = spriteNode
         self.spriteNode = spriteNode
         self.scene = scene
@@ -84,13 +85,19 @@ class SpriteComponent:GKComponent{
         circle.strokeColor = .black
         circle.lineWidth = bullet.radius/4
 		circle.zPosition = BULLETZBUFFER
+		circle.entity = bullet
         self.spriteNode = circle
         self.scene = scene
         super.init()
     }
 	init(foodEntity:FoodEntity, scene:SceneComponentDelegate) {
 		self.scene = scene
-		self.spriteNode = SKShapeNode(rect: CGRect(x: -15, y: -15, width: 30, height: 30))
+		let node = SKShapeNode(rect: CGRect(x: -15, y: -15, width: 30, height: 30))
+		node.fillColor = NSColor(red:1.00, green:0.89, blue:0.42, alpha:1.0)
+		node.strokeColor = NSColor(red:0.75, green:0.68, blue:0.31, alpha:1.0)
+		node.lineWidth = 3
+		node.entity = foodEntity
+		self.spriteNode = node
 		super.init()
 	}
     var bar:SKShapeNode?

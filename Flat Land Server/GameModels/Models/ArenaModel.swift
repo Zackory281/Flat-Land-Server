@@ -10,7 +10,7 @@ import Foundation
 import SpriteKit
 import GameplayKit
 
-class ArenaModel: NSObject, SKSceneDelegate, ArenaDelegate, EntitManagerDelegate, TouchManagerDelegate, TurretManagerDelegate, PhysicsManagerDelegate, ArenaSceneTouchDelegate{
+class ArenaModel: NSObject, SKSceneDelegate, ArenaDelegate, EntitManagerDelegate, TouchManagerDelegate, TurretManagerDelegate, PhysicsManagerDelegate, ArenaSceneTouchDelegate, FoodControllerDelegate{
     func makeAllTankGo(direction: Direction?) {
         componentManager.getEntitiesOf(type: ShapeTankEntity.self).forEach{ tank in
             tank.direction = direction
@@ -56,11 +56,13 @@ class ArenaModel: NSObject, SKSceneDelegate, ArenaDelegate, EntitManagerDelegate
         initiateBuildings()
 		//debug end
 		foodController = FoodController(arenaDelegate: self)
+		foodController.foodControllerDelegate = self
     }
 	func addEntityOfType<T:GKEntity>(_ type:T.Type){
 		switch type {
 		case is FoodEntity.Type:
-			addEntity(entity: FoodEntity(sceneDelegate: sceneManager, arenaDelegate: self,type:.Triangle, position:CGPoint(x: 400, y: 400)))
+			print("\(type) add entity not implemented")
+			//addEntity(entity: FoodEntity(sceneDelegate: sceneManager, arenaDelegate: self,type:.Triangle, position:CGPoint(x: 500, y: 400)))
 		default:
 			print("\(type) add entity not implemented")
 		}

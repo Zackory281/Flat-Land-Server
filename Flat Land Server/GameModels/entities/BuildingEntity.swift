@@ -22,7 +22,7 @@ class BuildingEntity: GKEntity {
         self.position = toVector_2f(building.position)
         super.init()
         self.addComponent(SpriteComponent.init(building: building, scene:scene))
-        self.addComponent(PhysicsComponent(building: building))
+        self.addComponent(PhysicsComponent(buildingEntity: self))
 		self.addComponent(HealthComponent(health:30, maxHealth:30, arenaDelegate:arena))
         self.addComponent(DisappearComponent(function: disappearFunction, arena: arena))
     }

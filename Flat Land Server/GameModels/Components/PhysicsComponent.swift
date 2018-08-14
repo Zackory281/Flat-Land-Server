@@ -15,6 +15,8 @@ class PhysicsComponent: GKComponent {
 		return entity?.component(ofType: SpriteComponent.self)?.spriteNode
 	}
 	var forceDirection:CGVector = CGVector.zero
+	var repellees:WeakSet = WeakSet<SKNode>()
+	var randomVelocity:CGVector?
 	override init() {
 		physicsBody = SKPhysicsBody(texture: SKTexture(image:#imageLiteral(resourceName: "triangle")), size: CGSize(width: 30, height: 30))
 		super.init()
@@ -37,8 +39,8 @@ class PhysicsComponent: GKComponent {
 		super.init()
 		setCategory(category: tank.physicsBodyCategory)
 	}
-	init(building:Building) {
-		physicsBody = SKPhysicsBody(rectangleOf: building.size)
+	init(buildingEntity:BuildingEntity) {
+		physicsBody = SKPhysicsBody(rectangleOf: buildingEntity.building.size)
 		physicsBody.restitution = 0.3
 		physicsBody.isDynamic = false
 		physicsBody.friction = 0
@@ -46,13 +48,15 @@ class PhysicsComponent: GKComponent {
 		super.init()
 		setCategory(category: .Building)
 	}
-	init(foodType:FoodType){
-		physicsBody = SKPhysicsBody(circleOfRadius: 10)
-		physicsBody.restitution = 0.3
+	init(foodEntity:FoodEntity){
+		physicsBody = SKPhysicsBody(circleOfRadius: foodEntity.size)
 		physicsBody.isDynamic = true
-		physicsBody.mass = 1
+		physicsBody.mass = 0.1
+		physicsBody.velocity = CGVector(dx: 0, dy: 0)
+		frictionCoef = 0.2
+		self.randomVelocity = getRandomVector(3)
 		super.init()
-		setCategory(category: .Entity)
+		setCategory(category: .Food)
 	}
 	func setCategory(category:BodyCategory) -> Void {
 		let masks = categoryKey[category]!
@@ -68,6 +72,12 @@ class PhysicsComponent: GKComponent {
 		if let tankEntity = entity! as? ShapeTankEntity{
 			physicsBody.applyForce(forceDirection*tankEntity.tank.force+frictionForce)
 		}
+		if let _ = entity! as? FoodEntity{
+			physicsBody.applyForce(randomVelocity! - physicsBody.velocity * frictionCoef)
+		}
+		for repellee in repellees.allObjects{
+			repellee.physicsBody?.applyImpulse((repellee.position - physicsBody.node!.position)*0.01)
+		}
 	}
 	var frictionCoef:CGFloat = 20
 	var frictionForce:CGVector{
@@ -81,23 +91,26 @@ let categoryKey:[BodyCategory:(cate:UInt32, coll:UInt32,cont:UInt32)] = [
 	.Nothing :  (cate:UInt32.shift(32),
 				 coll:UInt32.shift(32),
 				 cont:UInt32(0)),
-	.Entity  :  (cate:UInt32.shift(0),
+	.Entity  :  (cate:EntityCate,
 				 coll:EntityCate | BuildingCate,
-				 cont:UInt32(0)),
-	.Food  :  (cate:UInt32.shift(0),
-			   coll:EntityCate | BuildingCate,
-			   cont:UInt32(0)),
-	.Bullet  :  (cate:UInt32.shift(1),
+				 cont:EntityCate | FoodCate),
+	.Food  :  (cate: FoodCate,
+			   coll: BuildingCate,
+			   cont:BulletCate | FoodCate),
+	.Bullet  :  (cate:BulletCate,
 				 coll:UInt32(0),
-				 cont:BuildingCate),
-	.Building:  (cate:UInt32.shift(2),
+				 cont:BuildingCate | FoodCate),
+	.Building:  (cate:BuildingCate,
 				 coll:UInt32.fill(32),
 				 cont:UInt32.fill(32)),
 	
 ]
+let NothingCate:UInt32 = UInt32.shift(32)
 let EntityCate:UInt32 = UInt32.shift(0)
 let BulletCate:UInt32 = UInt32.shift(1)
 let BuildingCate:UInt32 = UInt32.shift(2)
+let FoodCate:UInt32 = UInt32.shift(3)
+
 enum BodyCategory {
 	case Nothing
 	case Entity
@@ -105,3 +118,4 @@ enum BodyCategory {
 	case Food
 	case Building
 }
+
