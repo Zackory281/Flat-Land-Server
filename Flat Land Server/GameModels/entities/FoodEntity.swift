@@ -15,9 +15,13 @@ class FoodEntity:GKEntity {
 		return self.food.foodType
 	}()
 	let food:Food
-	let size:CGFloat = 15
+	lazy var size:CGFloat = {
+		return self.food.foodSize
+	}()
+	var shapePath:CGPath!
 	init(sceneDelegate:SceneComponentDelegate, arenaDelegate:ArenaDelegate, foodSpawn:FoodSpawn) {
 		self.food = foodSpawn.food
+		self.shapePath = getFoodPath(food.foodType, size: food.foodSize)
 		super.init()
 		self.addComponent(SpriteComponent(foodEntity: self, scene: sceneDelegate))
 		self.addComponent(PhysicsComponent(foodEntity: self))
@@ -29,7 +33,7 @@ class FoodEntity:GKEntity {
 	override func update(deltaTime seconds: TimeInterval) {
 		//physicsComponent.physicsBody.applyImpulse(getRandomVector(10))
 	}
-	
+	var spriteNode:SKSpriteNode{return self.spriteComponent.spriteNode as! SKSpriteNode}
 	var spriteComponent:SpriteComponent{ return self.component(ofType: SpriteComponent.self)! }
 	var healthComponent:HealthComponent{ return self.component(ofType: HealthComponent.self)! }
 	var physicsComponent:PhysicsComponent{ return self.component(ofType: PhysicsComponent.self)! }
@@ -42,4 +46,5 @@ struct FoodInit {
 }
 enum FoodType {
 	case Triangle
+	case Square
 }

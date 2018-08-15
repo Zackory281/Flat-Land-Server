@@ -25,7 +25,8 @@ class FoodController{
 	func spawn(){
 		if spawned < spawnLimit{
 			guard let foodControllerDelegate = foodControllerDelegate else {return}
-			foodControllerDelegate.spawnFood(foodSpawn: FoodSpawn(food: Food(foodType: .Triangle), position: CGPoint(x: 600, y: 600)))
+			foodControllerDelegate.spawnFood(foodSpawn: FoodSpawn(food: Food(foodType: .Triangle, foodSize:20), position: CGPoint(x: 600, y: 600)))
+			foodControllerDelegate.spawnFood(foodSpawn: FoodSpawn(food: Food(foodType: .Square, foodSize:15), position: CGPoint(x: 500, y: 500)))
 			spawned += 1
 		}
 	}
@@ -51,6 +52,7 @@ protocol FoodControllerDelegate: class{
 
 struct Food {
 	let foodType:FoodType
+	let foodSize:CGFloat
 }
 
 struct FoodSpawn {

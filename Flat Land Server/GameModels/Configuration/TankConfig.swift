@@ -102,7 +102,7 @@ struct Bullet {
 	let damage:Double
 	let health:Double
 	let mass:CGFloat
-	init(health:Double?=nil,damage:Double=0.5, radius:CGFloat=0.5,speed:CGFloat=400, mass:CGFloat=0.1, timeout:TimeInterval=1) {
+	init(health:Double?=nil,damage:Double=0.5, radius:CGFloat=0.5,speed:CGFloat=400, mass:CGFloat=0.1, timeout:TimeInterval=5) {
 		self.damage = damage
 		self.radius = radius
 		self.timeout = timeout

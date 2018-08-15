@@ -49,7 +49,7 @@ class PhysicsComponent: GKComponent {
 		setCategory(category: .Building)
 	}
 	init(foodEntity:FoodEntity){
-		physicsBody = SKPhysicsBody(circleOfRadius: foodEntity.size)
+		physicsBody = SKPhysicsBody(circleOfRadius: foodEntity.size/root3)
 		physicsBody.isDynamic = true
 		physicsBody.mass = 0.1
 		physicsBody.velocity = CGVector(dx: 0, dy: 0)

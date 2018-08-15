@@ -92,9 +92,10 @@ class SpriteComponent:GKComponent{
     }
 	init(foodEntity:FoodEntity, scene:SceneComponentDelegate) {
 		self.scene = scene
-		let node = SKShapeNode(rect: CGRect(x: -15, y: -15, width: 30, height: 30))
-		node.fillColor = NSColor(red:1.00, green:0.89, blue:0.42, alpha:1.0)
-		node.strokeColor = NSColor(red:0.75, green:0.68, blue:0.31, alpha:1.0)
+		let node = SKShapeNode(path: foodEntity.shapePath, centered: true)
+		let colors = foodColors[foodEntity.foodType]!
+		node.fillColor = colors.fill
+		node.strokeColor = colors.stroke
 		node.lineWidth = 3
 		let texture = scene.getTexture(node: node)
 		let spriteNode = SKSpriteNode(texture: texture)
@@ -186,3 +187,31 @@ let hurtAction:SKAction = SKAction.sequence([
 //		}
 //	})
 //	])
+
+func getFoodPath(_ foodType:FoodType, size:CGFloat) -> CGPath{
+	switch foodType {
+	case .Square:
+		let path = NSBezierPath()
+		path.move(to: NSPoint(x: 0, y: 0))
+		path.line(to: NSPoint(x: 0, y: 2*size))
+		path.line(to: NSPoint(x: 2*size, y: 2*size))
+		path.line(to: NSPoint(x: 2*size, y: 0))
+		path.line(to: NSPoint(x: 0, y: 0))
+		path.close()
+		return path.cgPath
+	case .Triangle:
+		let path = NSBezierPath()
+		path.move(to: NSPoint(x: 0, y: 0))
+		path.line(to: NSPoint(x: size / 2 * root3, y: size + size/2))
+		path.line(to: NSPoint(x: size * root3, y: 0))
+		path.line(to: NSPoint(x: 0, y: 0))
+		path.close()
+		return path.cgPath
+	}
+}
+
+var root3:CGFloat = CGFloat(3).squareRoot()
+let foodColors:[FoodType:(fill:NSColor, stroke:NSColor)] = [
+	.Triangle:(fill:NSColor(red:0.99, green:0.46, blue:0.46, alpha:1.0), stroke:NSColor(red:0.32, green:0.32, blue:0.32, alpha:1.0)),
+	.Square:(fill:NSColor(red:1.00, green:0.89, blue:0.42, alpha:1.0), stroke:NSColor(red:0.32, green:0.32, blue:0.32, alpha:1.0)),
+]
